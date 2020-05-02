@@ -106,7 +106,7 @@ RUN set -ex && \
     make -j$(nproc) VERBOSE=1
 
 RUN set -ex && \
-    ldd /src/build/release/bin/lokid
+    ldd /src/build/release/bin/coiniclesd
 
 # runtime stage
 FROM ubuntu:16.04
@@ -129,7 +129,7 @@ VOLUME /home/loki/.loki
 
 # Generate your wallet via accessing the container and run:
 # cd /wallet
-# loki-wallet-cli
+# coinicles-wallet-cli
 VOLUME /wallet
 
 EXPOSE 22022
@@ -138,4 +138,4 @@ EXPOSE 22023
 # switch to user monero
 USER loki
 
-ENTRYPOINT ["lokid", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=22022", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=22023", "--non-interactive", "--confirm-external-bind"]
+ENTRYPOINT ["coiniclesd", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=22022", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=22023", "--non-interactive", "--confirm-external-bind"]

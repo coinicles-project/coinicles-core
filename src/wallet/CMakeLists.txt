@@ -52,7 +52,7 @@ target_link_libraries(wallet
     OpenSSL::SSL
     extra)
 
-loki_add_executable(wallet_rpc_server "loki-wallet-rpc"
+loki_add_executable(wallet_rpc_server "coinicles-wallet-rpc"
   wallet_rpc_server.cpp
   )
 

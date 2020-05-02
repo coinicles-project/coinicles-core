@@ -18,35 +18,12 @@ uint64_t get_staking_requirement(cryptonote::network_type m_nettype, uint64_t he
   if (hf_version >= cryptonote::network_version_13_enforce_checkpoints)
   {
     constexpr int64_t heights[] = {
-        385824,
-        429024,
-        472224,
-        515424,
-        558624,
-        601824,
-        645024,
-        688224,
-        731424,
-        774624,
-        817824,
-        861024,
-        1000000,
+        29,
     };
 
     constexpr int64_t lsr[] = {
         20458380815527,
-        19332319724305,
-        18438564443912,
-        17729190407764,
-        17166159862153,
-        16719282221956,
-        16364595203882,
-        16083079931076,
-        15859641110978,
-        15682297601941,
-        15541539965538,
-        15429820555489,
-        15000000000000,
+
     };
 
     assert(height >= heights[0]);
@@ -70,7 +47,7 @@ uint64_t get_staking_requirement(cryptonote::network_type m_nettype, uint64_t he
     return static_cast<uint64_t>(result);
   }
 
-  uint64_t hardfork_height = m_nettype == cryptonote::MAINNET ? 101250 : 96210 /* stagenet */;
+  uint64_t hardfork_height = m_nettype == cryptonote::MAINNET ? 19 : 19 /* stagenet */;
   if (height < hardfork_height) height = hardfork_height;
 
   uint64_t height_adjusted = height - hardfork_height;

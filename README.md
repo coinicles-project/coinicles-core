@@ -119,7 +119,7 @@ invokes cmake commands as needed.
 
 * Add `PATH="$PATH:$HOME/loki/build/release/bin"` to `.profile`
 
-* Run Loki with `lokid --detach`
+* Run Loki with `coiniclesd --detach`
 
 * **Optional**: build and run the test suite to verify the binaries:
 
@@ -188,7 +188,7 @@ Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (
 
 * Add `PATH="$PATH:$HOME/loki/build/release/bin"` to `.profile`
 
-* Run Loki with `lokid --detach`
+* Run Loki with `coiniclesd --detach`
 
 * You may wish to reduce the size of the swap file after the build has finished, and delete the boost directory from your home directory
 
@@ -506,17 +506,17 @@ Packages are available for
 * The build needs 3 GB space.
 * Wait one hour or more. For docker, the collect_from_docker_container.sh script will automate downloading the binaries from the docker container.
 
-## Running lokid
+## Running coiniclesd
 
 The build places the binary in `bin/` sub-directory within the build directory
 from which cmake was invoked (repository root by default). To run in
 foreground:
 
 ```bash
-./bin/lokid
+./bin/coiniclesd
 ```
 
-To list all available options, run `./bin/lokid --help`.  Options can be
+To list all available options, run `./bin/coiniclesd --help`.  Options can be
 specified either on the command line or in a configuration file passed by the
 `--config-file` argument.  To specify an option in the configuration file, add
 a line with the syntax `argumentname=value`, where `argumentname` is the name
@@ -525,18 +525,18 @@ of the argument without the leading dashes, for example `log-level=1`.
 To run in background:
 
 ```bash
-./bin/lokid --log-file lokid.log --detach
+./bin/coiniclesd --log-file coiniclesd.log --detach
 ```
 
 To run as a systemd service, copy
-[lokid.service](utils/systemd/lokid.service) to `/etc/systemd/system/` and
-[lokid.conf](utils/conf/lokid.conf) to `/etc/`. The [example
-service](utils/systemd/lokid.service) assumes that the user `loki` exists
+[coiniclesd.service](utils/systemd/coiniclesd.service) to `/etc/systemd/system/` and
+[coiniclesd.conf](utils/conf/coiniclesd.conf) to `/etc/`. The [example
+service](utils/systemd/coiniclesd.service) assumes that the user `loki` exists
 and its home is the data directory specified in the [example
-config](utils/conf/lokid.conf).
+config](utils/conf/coiniclesd.conf).
 
 If you're on Mac, you may need to add the `--max-concurrency 1` option to
-loki-wallet-cli, and possibly lokid, if you get crashes refreshing.
+coinicles-wallet-cli, and possibly coiniclesd, if you get crashes refreshing.
 
 ## Internationalization
 
@@ -554,28 +554,28 @@ While Loki isn't made to integrate with Tor, it can be used wrapped with torsock
 setting the following configuration parameters and environment variables:
 
 * `--p2p-bind-ip 127.0.0.1` on the command line or `p2p-bind-ip=127.0.0.1` in
-  lokid.conf to disable listening for connections on external interfaces.
-* `--no-igd` on the command line or `no-igd=1` in lokid.conf to disable IGD
+  coiniclesd.conf to disable listening for connections on external interfaces.
+* `--no-igd` on the command line or `no-igd=1` in coiniclesd.conf to disable IGD
   (UPnP port forwarding negotiation), which is pointless with Tor.
 * `DNS_PUBLIC=tcp` or `DNS_PUBLIC=tcp://x.x.x.x` where x.x.x.x is the IP of the
   desired DNS server, for DNS requests to go over TCP, so that they are routed
-  through Tor. When IP is not specified, lokid uses the default list of
+  through Tor. When IP is not specified, coiniclesd uses the default list of
   servers defined in [src/common/dns_utils.cpp](src/common/dns_utils.cpp).
-* `TORSOCKS_ALLOW_INBOUND=1` to tell torsocks to allow lokid to bind to interfaces
+* `TORSOCKS_ALLOW_INBOUND=1` to tell torsocks to allow coiniclesd to bind to interfaces
    to accept connections from the wallet. On some Linux systems, torsocks
    allows binding to localhost by default, so setting this variable is only
    necessary to allow binding to local LAN/VPN interfaces to allow wallets to
    connect from remote hosts. On other systems, it may be needed for local wallets
    as well.
 * Do NOT pass `--detach` when running through torsocks with systemd, (see
-  [utils/systemd/lokid.service](utils/systemd/lokid.service) for details).
+  [utils/systemd/coiniclesd.service](utils/systemd/coiniclesd.service) for details).
 * If you use the wallet with a Tor daemon via the loopback IP (eg, 127.0.0.1:9050),
   then use `--untrusted-daemon` unless it is your own hidden service.
 
-Example command line to start lokid through Tor:
+Example command line to start coiniclesd through Tor:
 
 ```bash
-DNS_PUBLIC=tcp torsocks lokid --p2p-bind-ip 127.0.0.1 --no-igd
+DNS_PUBLIC=tcp torsocks coiniclesd --p2p-bind-ip 127.0.0.1 --no-igd
 ```
 
 ### Using Tor on Tails
@@ -586,7 +586,7 @@ allow inbound connections. Full example:
 
 ```bash
 sudo iptables -I OUTPUT 2 -p tcp -d 127.0.0.1 -m tcp --dport 22023 -j ACCEPT
-DNS_PUBLIC=tcp torsocks ./lokid --p2p-bind-ip 127.0.0.1 --no-igd --rpc-bind-ip 127.0.0.1 \
+DNS_PUBLIC=tcp torsocks ./coiniclesd --p2p-bind-ip 127.0.0.1 --no-igd --rpc-bind-ip 127.0.0.1 \
     --data-dir /home/amnesia/Persistent/your/directory/to/the/blockchain
 ```
 
@@ -605,7 +605,7 @@ Run the build.
 Once it stalls, enter the following command:
 
 ```bash
-gdb /path/to/lokid `pidof lokid`
+gdb /path/to/coiniclesd `pidof coiniclesd`
 ```
 
 Type `thread apply all bt` within gdb in order to obtain the stack trace
@@ -618,23 +618,23 @@ Enter `echo core | sudo tee /proc/sys/kernel/core_pattern` to stop cores from be
 
 Run the build.
 
-When it terminates with an output along the lines of "Segmentation fault (core dumped)", there should be a core dump file in the same directory as lokid. It may be named just `core`, or `core.xxxx` with numbers appended.
+When it terminates with an output along the lines of "Segmentation fault (core dumped)", there should be a core dump file in the same directory as coiniclesd. It may be named just `core`, or `core.xxxx` with numbers appended.
 
 You can now analyse this core dump with `gdb` as follows:
 
 ```bash
-gdb /path/to/lokid /path/to/dumpfile`
+gdb /path/to/coiniclesd /path/to/dumpfile`
 ```
 
 Print the stack trace with `bt`
 
 #### To run Loki within gdb:
 
-Type `gdb /path/to/lokid`
+Type `gdb /path/to/coiniclesd`
 
 Pass command-line options with `--args` followed by the relevant arguments
 
-Type `run` to run lokid
+Type `run` to run coiniclesd
 
 ### Analysing memory corruption
 
@@ -652,7 +652,7 @@ You can then run the loki tools normally. Performance will typically halve.
 
 #### valgrind
 
-Install valgrind and run as `valgrind /path/to/lokid`. It will be very slow.
+Install valgrind and run as `valgrind /path/to/coiniclesd`. It will be very slow.
 
 ### LMDB
 

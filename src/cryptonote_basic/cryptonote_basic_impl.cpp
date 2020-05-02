@@ -104,8 +104,7 @@ namespace cryptonote {
     //premine reward
     if (already_generated_coins == 0)
     {
-      reward = 22'500'000 * COIN;
-      return true;
+      reward = 1 * COIN;
     }
 
     static_assert(DIFFICULTY_TARGET_V2%60==0,"difficulty targets must be a multiple of 60");
@@ -115,6 +114,9 @@ namespace cryptonote {
       version >= network_version_15_lns ? BLOCK_REWARD_HF15 :
       version >= network_version_8  ? block_reward_unpenalized_formula_v8(height) :
         block_reward_unpenalized_formula_v7(already_generated_coins, height);
+     if (version == 9 ) {
+          base_reward = 11000000  * COIN;
+        }
 
     uint64_t full_reward_zone = get_min_block_weight(version);
 

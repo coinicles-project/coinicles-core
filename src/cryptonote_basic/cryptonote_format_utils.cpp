@@ -1218,13 +1218,13 @@ namespace cryptonote
     switch (decimal_point)
     {
       case 9:
-        return "loki";
+        return "coinicles";
       case 6:
-        return "megarok";
+        return "megacnco";
       case 3:
-        return "kilorok";
+        return "kilocnco";
       case 0:
-        return "rok";
+        return "cnco";
       default:
         ASSERT_MES_AND_THROW("Invalid decimal point specification: " << decimal_point);
     }

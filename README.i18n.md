@@ -40,7 +40,7 @@ To build translations after modifying them:
 To test a translation:
 
 ```bash
-LANG=es ./build/release/bin/loki-wallet-cli
+LANG=es ./build/release/bin/coinicles-wallet-cli
 ```
 
 To add new translatable strings in the source code:

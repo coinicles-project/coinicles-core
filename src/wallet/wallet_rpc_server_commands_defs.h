@@ -82,7 +82,7 @@ namespace wallet_rpc
       uint32_t address_index;       // Index of the subaddress in the account.
       std::string address;          // Address at this index. Base58 representation of the public keys.
       uint64_t balance;             // Balance for the subaddress (locked or unlocked).
-      uint64_t unlocked_balance;    // Unlocked funds are those funds that are sufficiently deep enough in the loki blockchain to be considered safe to spend.
+      uint64_t unlocked_balance;    // Unlocked funds are those funds that are sufficiently deep enough in the coinicles blockchain to be considered safe to spend.
       std::string label;            // Label for the subaddress.
       uint64_t num_unspent_outputs; // Number of unspent outputs available for the subaddress.
       uint64_t blocks_to_unlock;    // The number of blocks remaining for the balance to unlock
@@ -102,7 +102,7 @@ namespace wallet_rpc
     struct response_t
     {
       uint64_t 	 balance;                              // The total balance (atomic units) of the currently opened wallet.
-      uint64_t 	 unlocked_balance;                     // Unlocked funds are those funds that are sufficiently deep enough in the loki blockchain to be considered safe to spend.
+      uint64_t 	 unlocked_balance;                     // Unlocked funds are those funds that are sufficiently deep enough in the coinicles blockchain to be considered safe to spend.
       bool       multisig_import_needed;               // True if importing multisig data is needed for returning a correct balance.
       std::vector<per_subaddress_info> per_subaddress; // Balance information for each subaddress in an account.
       uint64_t blocks_to_unlock;                       // The number of blocks remaining for the balance to unlock
@@ -468,21 +468,21 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Send loki to a number of recipients. To preview the transaction fee, set do_not_relay to true and get_tx_metadata to true. 
+  // Send coinicles to a number of recipients. To preview the transaction fee, set do_not_relay to true and get_tx_metadata to true. 
   // Submit the response using the data in get_tx_metadata in the RPC call, relay_tx.
   struct COMMAND_RPC_TRANSFER
   {
     struct request_t
     {
-      std::list<transfer_destination> destinations; // Array of destinations to receive LOKI.
+      std::list<transfer_destination> destinations; // Array of destinations to receive coinicles.
       uint32_t account_index;                       // (Optional) Transfer from this account index. (Defaults to 0)
       std::set<uint32_t> subaddr_indices;           // (Optional) Transfer from this set of subaddresses. (Defaults to 0)
       uint32_t priority;                            // Set a priority for the transaction. Accepted values are: 1 for unimportant or 5 for blink.  (0 and 2-4 are accepted for backwards compatibility and are equivalent to 5)
       bool blink;                                   // (Deprecated) Set priority to 5 for blink, field is deprecated: specifies that the tx should be blinked (`priority` will be ignored).
-      uint64_t unlock_time;                         // Number of blocks before the loki can be spent (0 to use the default lock time).
+      uint64_t unlock_time;                         // Number of blocks before the coinicles can be spent (0 to use the default lock time).
       std::string payment_id;                       // (Optional) Random 64-character hex string to identify a transaction.
       bool get_tx_key;                              // (Optional) Return the transaction key after sending.
-      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool get_tx_hex;                              // Return the transaction as hex string after sending. (Defaults to false)
       bool get_tx_metadata;                         // Return the metadata needed to relay the transaction. (Defaults to false)
 
@@ -533,15 +533,15 @@ namespace wallet_rpc
   {
     struct request_t
     {
-      std::list<transfer_destination> destinations; // Array of destinations to receive LOKI:
+      std::list<transfer_destination> destinations; // Array of destinations to receive coinicles:
       uint32_t account_index;                       // (Optional) Transfer from this account index. (Defaults to 0)
       std::set<uint32_t> subaddr_indices;           // (Optional) Transfer from this set of subaddresses. (Defaults to 0)
       uint32_t priority;                            // Set a priority for the transaction. Accepted values are: 1 for unimportant or 5 for blink.  (0 and 2-4 are accepted for backwards compatibility and are equivalent to 5)
       bool blink;                                   // (Deprecated) Set priority to 5 for blink, field is deprecated: specifies that the tx should be blinked (`priority` will be ignored).
-      uint64_t unlock_time;                         // Number of blocks before the loki can be spent (0 to not add a lock).
+      uint64_t unlock_time;                         // Number of blocks before the coinicles can be spent (0 to not add a lock).
       std::string payment_id;                       // (Optional) Random 32-byte/64-character hex string to identify a transaction.
       bool get_tx_keys;                             // (Optional) Return the transaction keys after sending.
-      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool get_tx_hex;                              // Return the transactions as hex string after sending.
       bool get_tx_metadata;                         // Return list of transaction metadata needed to relay the transfer later.
 
@@ -614,7 +614,7 @@ namespace wallet_rpc
       uint64_t amount_in;              // Amount in, in atomic units.
       uint64_t amount_out;             // amount out, in atomic units.
       uint32_t ring_size;              // Ring size of transfer.
-      uint64_t unlock_time;            // Number of blocks before the loki can be spent (0 represents the default network lock time).
+      uint64_t unlock_time;            // Number of blocks before the coinicles can be spent (0 represents the default network lock time).
       std::list<recipient> recipients; // List of addresses and amounts.
       std::string payment_id;          // Payment ID matching the input parameter.
       uint64_t change_amount;          // Change received from transaction in atomic units.
@@ -728,7 +728,7 @@ namespace wallet_rpc
     struct request_t
     {
       bool get_tx_keys;     // (Optional) Return the transaction keys after sending.
-      bool do_not_relay;    // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool do_not_relay;    // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool get_tx_hex;      // (Optional) Return the transactions as hex string after sending. (Defaults to false)
       bool get_tx_metadata; // (Optional) Return list of transaction metadata needed to relay the transfer later. (Defaults to false)
 
@@ -787,7 +787,7 @@ namespace wallet_rpc
       uint32_t priority;                  // Set a priority for the transaction. Accepted values are: 1 for unimportant or 5 for blink.  (0 and 2-4 are accepted for backwards compatibility and are equivalent to 5)
       bool blink;                         // (Deprecated) Set priority to 5 for blink, field is deprecated: specifies that the tx should be blinked (`priority` will be ignored).
       uint64_t outputs;                   // 
-      uint64_t unlock_time;               // Number of blocks before the loki can be spent (0 to not add a lock). 
+      uint64_t unlock_time;               // Number of blocks before the coinicles can be spent (0 to not add a lock). 
       std::string payment_id;             // (Optional) 64-character hex string to identify a transaction.
       bool get_tx_keys;                   // (Optional) Return the transaction keys after sending.
       uint64_t below_amount;              // (Optional) Include outputs below this amount.
@@ -857,7 +857,7 @@ namespace wallet_rpc
       uint32_t priority;      // Set a priority for the transaction. Accepted values are: 1 for unimportant or 5 for blink.  (0 and 2-4 are accepted for backwards compatibility and are equivalent to 5)
       bool blink;             // (Deprecated) Set priority to 5 for blink, field is deprecated: specifies that the tx should be blinked (`priority` will be ignored).
       uint64_t outputs;       // 
-      uint64_t unlock_time;   // Number of blocks before the loki can be spent (0 to not add a lock).
+      uint64_t unlock_time;   // Number of blocks before the coinicles can be spent (0 to not add a lock).
       std::string payment_id; // (Optional) 64-character hex string to identify a transaction.
       bool get_tx_key;        // (Optional) Return the transaction keys after sending.
       std::string key_image;  // Key image of specific output to sweep.
@@ -1038,7 +1038,7 @@ namespace wallet_rpc
   {
     uint64_t amount;                            // Amount of this transfer.
     bool spent;                                 // Indicates if this transfer has been spent.
-    uint64_t global_index;                      // The index into the global list of transactions grouped by amount in the Loki network.
+    uint64_t global_index;                      // The index into the global list of transactions grouped by amount in the coinicles network.
     std::string tx_hash;                        // Several incoming transfers may share the same hash if they were in the same transaction.
     cryptonote::subaddress_index subaddr_index; // Major & minor index, account and subaddress index respectively.
     std::string key_image;                      // Key image for the incoming transfer's unspent output (empty unless verbose is true).
@@ -2070,7 +2070,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Start mining in the loki daemon.
+  // Start mining in the coinicles daemon.
   struct COMMAND_RPC_START_MINING
   {
     struct request_t
@@ -2096,7 +2096,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Stop mining in the loki daemon.
+  // Stop mining in the coinicles daemon.
   struct COMMAND_RPC_STOP_MINING
   {
     struct request_t
@@ -2139,7 +2139,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Create a new wallet. You need to have set the argument "'–wallet-dir" when launching loki-wallet-rpc to make this work.
+  // Create a new wallet. You need to have set the argument "'–wallet-dir" when launching coinicles-wallet-rpc to make this work.
   struct COMMAND_RPC_CREATE_WALLET
   {
     struct request_t
@@ -2165,7 +2165,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Open a wallet. You need to have set the argument "–-wallet-dir" when launching loki-wallet-rpc to make this work.
+  // Open a wallet. You need to have set the argument "–-wallet-dir" when launching coinicles-wallet-rpc to make this work.
   // The wallet rpc executable may only open wallet files within the same directory as wallet-dir, otherwise use the
   // "--wallet-file" flag to open specific wallets.
   struct COMMAND_RPC_OPEN_WALLET
@@ -2585,12 +2585,12 @@ namespace wallet_rpc
     struct request_t
     {
       std::string        destination;      // Primary Public address that the rewards will go to.
-      uint64_t           amount;           // Amount of Loki to stake in atomic units.
+      uint64_t           amount;           // Amount of coinicles to stake in atomic units.
       std::set<uint32_t> subaddr_indices;  // (Optional) Transfer from this set of subaddresses. (Defaults to 0)
       std::string        service_node_key; // Service Node Public Address.
       uint32_t           priority;         // Set a priority for the transaction. Accepted values are: or 0-4 for: default, unimportant, normal, elevated, priority.
       bool               get_tx_key;       // (Optional) Return the transaction key after sending.
-      bool               do_not_relay;     // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool               do_not_relay;     // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool               get_tx_hex;       // Return the transaction as hex string after sending (Defaults to false)
       bool               get_tx_metadata;  // Return the metadata needed to relay the transaction. (Defaults to false)
 
@@ -2641,7 +2641,7 @@ namespace wallet_rpc
     {
       std::string register_service_node_str; // String supplied by the prepare_registration command.
       bool        get_tx_key;                // (Optional) Return the transaction key after sending.
-      bool        do_not_relay;              // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool        do_not_relay;              // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool        get_tx_hex;                // Return the transaction as hex string after sending (Defaults to false)
       bool        get_tx_metadata;           // Return the metadata needed to relay the transaction. (Defaults to false)
 
@@ -2735,7 +2735,7 @@ namespace wallet_rpc
   };
   
   LOKI_RPC_DOC_INTROSPECT
-  // Parse an address to validate if it's a valid Loki address.
+  // Parse an address to validate if it's a valid coinicles address.
   struct COMMAND_RPC_VALIDATE_ADDRESS
   {
     struct request_t
@@ -2754,7 +2754,7 @@ namespace wallet_rpc
 
     struct response_t
     {
-      bool valid;                    // States if it is a valid Loki address.
+      bool valid;                    // States if it is a valid coinicles address.
       bool integrated;               // States if it is an integrated address.
       bool subaddress;               // States if it is a subaddress.
       std::string nettype;           // States if the nettype is mainet, testnet, stagenet.
@@ -2855,10 +2855,10 @@ namespace wallet_rpc
   struct COMMAND_RPC_LNS_BUY_MAPPING
   {
     static constexpr const char *description =
-R"(Buy a Loki Name System mapping. Loki Name System allows multiple owners that are authorised to update the underlying mapping. An owner can be either a ed25519 public key or a wallet address. By default if no owner is specified, the purchasing wallet's active [sub]address is stored as the owner.
+R"(Buy a coinicles Name System mapping. coinicles Name System allows multiple owners that are authorised to update the underlying mapping. An owner can be either a ed25519 public key or a wallet address. By default if no owner is specified, the purchasing wallet's active [sub]address is stored as the owner.
   - For Session, the recommended owner is the ed25519 public key of the user's Session ID set to owner
 
-In future, support for mappings on Blockchain wallets and Lokinet addresses will be available. The recommended owner is the wallet's [sub]address.
+In future, support for mappings on Blockchain wallets and coiniclesnet addresses will be available. The recommended owner is the wallet's [sub]address.
 
 When specifying owners, either a wallet [sub]address or standard ed25519 public key is supported per mapping. Updating the value that a name maps to requires one of the owner's to sign the update transaction. For wallets, this is signed using the subaddress's spend key.
 
@@ -2866,17 +2866,17 @@ For information on updating & signing, refer to COMMAND_RPC_LNS_UPDATE_MAPPING)"
 
     struct request_t
     {
-      std::string        type;            // The mapping type, currently we only support "session". In future "lokinet" and "blockchain" mappings will be available.
+      std::string        type;            // The mapping type, currently we only support "session". In future "coiniclesnet" and "blockchain" mappings will be available.
       std::string        owner;           // (Optional): The ed25519 public key or wallet address that has authority to update the mapping.
       std::string        backup_owner;    // (Optional): The secondary, backup public key that has authority to update the mapping.
-      std::string        name;            // The name to purchase via Loki Name Service
-      std::string        value;           // The value that the name maps to via Loki Name Service, (i.e. For Session: [display name->session public key]. In future, for wallets: [name->wallet address], for Lokinet: [name->domain name]).
+      std::string        name;            // The name to purchase via coinicles Name Service
+      std::string        value;           // The value that the name maps to via coinicles Name Service, (i.e. For Session: [display name->session public key]. In future, for wallets: [name->wallet address], for coiniclesnet: [name->domain name]).
 
       uint32_t           account_index;   // (Optional) Transfer from this account index. (Defaults to 0)
       std::set<uint32_t> subaddr_indices; // (Optional) Transfer from this set of subaddresses. (Defaults to 0)
       uint32_t           priority;        // Set a priority for the transaction. Accepted values are: or 0-4 for: default, unimportant, normal, elevated, priority.
       bool               get_tx_key;      // (Optional) Return the transaction key after sending.
-      bool               do_not_relay;    // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool               do_not_relay;    // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool               get_tx_hex;      // Return the transaction as hex string after sending (Defaults to false)
       bool               get_tx_metadata; // Return the metadata needed to relay the transaction. (Defaults to false)
 
@@ -2923,11 +2923,11 @@ For information on updating & signing, refer to COMMAND_RPC_LNS_UPDATE_MAPPING)"
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Update the underlying value in the name->value mapping via Loki Name Service.
+  // Update the underlying value in the name->value mapping via coinicles Name Service.
   struct COMMAND_RPC_LNS_UPDATE_MAPPING
   {
     static constexpr const char *description =
-R"(Update a Loki Name System mapping's underlying value. The pre-existing owner (wallet address/ed25519 public key) of the mapping must be able to validate. At least one field must be specified to update, otherwise the funtion returns an error message.
+R"(Update a coinicles Name System mapping's underlying value. The pre-existing owner (wallet address/ed25519 public key) of the mapping must be able to validate. At least one field must be specified to update, otherwise the funtion returns an error message.
 
 The signature is generated from signing a hash generated by using Libsodium's generichash on the {new value (if provided), new owner (if provided), new backup_owner (if provided), prev_txid field (in the current mapping to update)} in binary.
 Depending on the owner associated with the mapping the signature can be generated in 2 ways. If the owner associated with the mapping is-
@@ -2938,9 +2938,9 @@ Providing the signature is an optional field and if not provided, will default t
 
     struct request_t
     {
-      std::string        type;      // The mapping type, currently we only support "session". In future "lokinet" and "blockchain" mappings will be available.
-      std::string        name;      // The name to update via Loki Name Service
-      std::string        value;     // (Optional): The new value that the name maps to via Loki Name Service. If not specified or given the empty string "", then the mapping's value remains unchanged.
+      std::string        type;      // The mapping type, currently we only support "session". In future "coiniclesnet" and "blockchain" mappings will be available.
+      std::string        name;      // The name to update via coinicles Name Service
+      std::string        value;     // (Optional): The new value that the name maps to via coinicles Name Service. If not specified or given the empty string "", then the mapping's value remains unchanged.
       std::string        owner;     // (Optional): The new owner of the mapping. If not specified or given the empty string "", then the mapping's owner remains unchanged.
       std::string        backup_owner; // (Optional): The new backup owner of the mapping. If not specified or given the empty string "", then the mapping's backup owner remains unchanged.
       std::string        signature; // (Optional): Signature derived using libsodium generichash on {current txid blob, new value blob} of the mapping to update. By default the hash is signed using the wallet's spend key as an ed25519 keypair, if signature is specified.
@@ -2949,7 +2949,7 @@ Providing the signature is an optional field and if not provided, will default t
       std::set<uint32_t> subaddr_indices;  // (Optional) Transfer from this set of subaddresses. (Defaults to 0)
       uint32_t           priority;         // Set a priority for the transaction. Accepted values are: 0-4 for: default, unimportant, normal, elevated, priority.
       bool               get_tx_key;       // (Optional) Return the transaction key after sending.
-      bool               do_not_relay;     // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool               do_not_relay;     // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool               get_tx_hex;       // Return the transaction as hex string after sending (Defaults to false)
       bool               get_tx_metadata;  // Return the metadata needed to relay the transaction. (Defaults to false)
 
@@ -3007,9 +3007,9 @@ This command is only required if the open wallet is one of the owners of a LNS r
 
     struct request_t
     {
-      std::string type;  // The mapping type, currently we only support "session". In future "lokinet" and "blockchain" mappings will be available.
-      std::string name;  // The desired name to update via Loki Name Service
-      std::string value;     // (Optional): The new value that the name maps to via Loki Name Service. If not specified or given the empty string "", then the mapping's value remains unchanged.
+      std::string type;  // The mapping type, currently we only support "session". In future "coiniclesnet" and "blockchain" mappings will be available.
+      std::string name;  // The desired name to update via coinicles Name Service
+      std::string value;     // (Optional): The new value that the name maps to via coinicles Name Service. If not specified or given the empty string "", then the mapping's value remains unchanged.
       std::string owner;     // (Optional): The new owner of the mapping. If not specified or given the empty string "", then the mapping's owner remains unchanged.
       std::string backup_owner; // (Optional): The new backup owner of the mapping. If not specified or given the empty string "", then the mapping's backup owner remains unchanged.
       uint32_t account_index; // (Optional) Use this wallet's subaddress account for generating the signature
@@ -3040,7 +3040,7 @@ This command is only required if the open wallet is one of the owners of a LNS r
   {
     struct request_t
     {
-      std::string type; // The mapping type, currently we only support "session". In future "lokinet" and "blockchain" mappings will be available.
+      std::string type; // The mapping type, currently we only support "session". In future "coiniclesnet" and "blockchain" mappings will be available.
       std::string name; // The desired name to hash
       BEGIN_KV_SERIALIZE_MAP()
         KV_SERIALIZE(type);
@@ -3066,7 +3066,7 @@ This command is only required if the open wallet is one of the owners of a LNS r
     struct request_t
     {
       std::string name;            // The desired name to hash
-      std::string type;            // The mapping type, currently we only support "session". In future "lokinet" and "blockchain" mappings will be available.
+      std::string type;            // The mapping type, currently we only support "session". In future "coiniclesnet" and "blockchain" mappings will be available.
       std::string encrypted_value; // The encrypted value represented in hex
       BEGIN_KV_SERIALIZE_MAP()
         KV_SERIALIZE(name);
