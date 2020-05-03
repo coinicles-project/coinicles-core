@@ -109,7 +109,7 @@ if (NOT LOKI_DAEMON_AND_WALLET_ONLY)
       ${EXTRA_LIBRARIES})
   set_property(TARGET wallet_rpc_server
     PROPERTY
-      OUTPUT_NAME "loki-wallet-rpc")
+      OUTPUT_NAME "coinicles-wallet-rpc")
   install(TARGETS wallet_rpc_server DESTINATION bin)
 endif()
 

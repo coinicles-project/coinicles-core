@@ -1484,7 +1484,7 @@ void BlockchainLMDB::open(const std::string& filename, cryptonote::network_type 
       if (mdb_flags & MDB_RDONLY)
       {
         MFATAL("Existing lmdb database needs to be converted, which cannot be done on a read-only database.");
-        MFATAL("Please run lokid once to convert the database.");
+        MFATAL("Please run coiniclesd once to convert the database.");
         failed = true;
       }
       else

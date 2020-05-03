@@ -85,7 +85,7 @@ namespace wallet_rpc
       uint32_t address_index;       // Index of the subaddress in the account.
       std::string address;          // Address at this index. Base58 representation of the public keys.
       uint64_t balance;             // Balance for the subaddress (locked or unlocked).
-      uint64_t unlocked_balance;    // Unlocked funds are those funds that are sufficiently deep enough in the loki blockchain to be considered safe to spend.
+      uint64_t unlocked_balance;    // Unlocked funds are those funds that are sufficiently deep enough in the coinicles blockchain to be considered safe to spend.
       std::string label;            // Label for the subaddress.
       uint64_t num_unspent_outputs; // Number of unspent outputs available for the subaddress.
       uint64_t blocks_to_unlock;    // The number of blocks remaining for the balance to unlock
@@ -105,7 +105,7 @@ namespace wallet_rpc
     struct response_t
     {
       uint64_t 	 balance;                              // The total balance (atomic units) of the currently opened wallet.
-      uint64_t 	 unlocked_balance;                     // Unlocked funds are those funds that are sufficiently deep enough in the loki blockchain to be considered safe to spend.
+      uint64_t 	 unlocked_balance;                     // Unlocked funds are those funds that are sufficiently deep enough in the coinicles blockchain to be considered safe to spend.
       bool       multisig_import_needed;               // True if importing multisig data is needed for returning a correct balance.
       std::vector<per_subaddress_info> per_subaddress; // Balance information for each subaddress in an account.
       uint64_t blocks_to_unlock;                       // The number of blocks remaining for the balance to unlock
@@ -481,21 +481,21 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Send loki to a number of recipients. To preview the transaction fee, set do_not_relay to true and get_tx_metadata to true. 
+  // Send coinicles to a number of recipients. To preview the transaction fee, set do_not_relay to true and get_tx_metadata to true. 
   // Submit the response using the data in get_tx_metadata in the RPC call, relay_tx.
   struct COMMAND_RPC_TRANSFER
   {
     struct request_t
     {
-      std::list<transfer_destination> destinations; // Array of destinations to receive LOKI.
+      std::list<transfer_destination> destinations; // Array of destinations to receive coinicles.
       uint32_t account_index;                       // (Optional) Transfer from this account index. (Defaults to 0)
       std::set<uint32_t> subaddr_indices;           // (Optional) Transfer from this set of subaddresses. (Defaults to 0)
       uint32_t priority;                            // Set a priority for the transaction. Accepted Values are: default (1), or 0-3 for: unimportant, normal, elevated, priority.
-      uint64_t ring_size;                           // (Deprecated) Set to 10. Sets ringsize to n (mixin + 1). Loki ring_size is statically set to 10.
-      uint64_t unlock_time;                         // Number of blocks before the loki can be spent (0 to use the default lock time).
+      uint64_t ring_size;                           // (Deprecated) Set to 10. Sets ringsize to n (mixin + 1). coinicles ring_size is statically set to 10.
+      uint64_t unlock_time;                         // Number of blocks before the coinicles can be spent (0 to use the default lock time).
       std::string payment_id;                       // (Optional) Random 64-character hex string to identify a transaction.
       bool get_tx_key;                              // (Optional) Return the transaction key after sending.
-      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool get_tx_hex;                              // Return the transaction as hex string after sending. (Defaults to false)
       bool get_tx_metadata;                         // Return the metadata needed to relay the transaction. (Defaults to false)
 
@@ -546,15 +546,15 @@ namespace wallet_rpc
   {
     struct request_t
     {
-      std::list<transfer_destination> destinations; // Array of destinations to receive LOKI:
+      std::list<transfer_destination> destinations; // Array of destinations to receive coinicles:
       uint32_t account_index;                       // (Optional) Transfer from this account index. (Defaults to 0)
       std::set<uint32_t> subaddr_indices;           // (Optional) Transfer from this set of subaddresses. (Defaults to 0)
       uint32_t priority;                            // Set a priority for the transactions. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
-      uint64_t ring_size;                           // (Ignored) Sets ringsize to n (mixin + 1). Loki ring_size is statically set to 10.
-      uint64_t unlock_time;                         // Number of blocks before the loki can be spent (0 to not add a lock).
+      uint64_t ring_size;                           // (Ignored) Sets ringsize to n (mixin + 1). coinicles ring_size is statically set to 10.
+      uint64_t unlock_time;                         // Number of blocks before the coinicles can be spent (0 to not add a lock).
       std::string payment_id;                       // (Optional) Random 32-byte/64-character hex string to identify a transaction.
       bool get_tx_keys;                             // (Optional) Return the transaction keys after sending.
-      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool do_not_relay;                            // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool get_tx_hex;                              // Return the transactions as hex string after sending.
       bool get_tx_metadata;                         // Return list of transaction metadata needed to relay the transfer later.
 
@@ -627,7 +627,7 @@ namespace wallet_rpc
       uint64_t amount_in;              // Amount in, in atomic units.
       uint64_t amount_out;             // amount out, in atomic units.
       uint32_t ring_size;              // Ring size of transfer.
-      uint64_t unlock_time;            // Number of blocks before the loki can be spent (0 represents the default network lock time).
+      uint64_t unlock_time;            // Number of blocks before the coinicles can be spent (0 represents the default network lock time).
       std::list<recipient> recipients; // List of addresses and amounts.
       std::string payment_id;          // Payment ID matching the input parameter.
       uint64_t change_amount;          // Change received from transaction in atomic units.
@@ -741,7 +741,7 @@ namespace wallet_rpc
     struct request_t
     {
       bool get_tx_keys;     // (Optional) Return the transaction keys after sending.
-      bool do_not_relay;    // (Optional) If true, the newly created transaction will not be relayed to the loki network. (Defaults to false)
+      bool do_not_relay;    // (Optional) If true, the newly created transaction will not be relayed to the coinicles network. (Defaults to false)
       bool get_tx_hex;      // (Optional) Return the transactions as hex string after sending. (Defaults to false)
       bool get_tx_metadata; // (Optional) Return list of transaction metadata needed to relay the transfer later. (Defaults to false)
 
@@ -798,9 +798,9 @@ namespace wallet_rpc
       uint32_t account_index;             // Sweep transactions from this account.
       std::set<uint32_t> subaddr_indices; // (Optional) Sweep from this set of subaddresses in the account.
       uint32_t priority;                  // (Optional) Priority for sending the sweep transfer, partially determines fee. 
-      uint64_t ring_size;                 // (Deprecated) Set to 10. Sets ringsize to n (mixin + 1). Loki ring_size is statically set to 10.
+      uint64_t ring_size;                 // (Deprecated) Set to 10. Sets ringsize to n (mixin + 1). coinicles ring_size is statically set to 10.
       uint64_t outputs;                   // 
-      uint64_t unlock_time;               // Number of blocks before the loki can be spent (0 to not add a lock). 
+      uint64_t unlock_time;               // Number of blocks before the coinicles can be spent (0 to not add a lock). 
       std::string payment_id;             // (Optional) 64-character hex string to identify a transaction.
       bool get_tx_keys;                   // (Optional) Return the transaction keys after sending.
       uint64_t below_amount;              // (Optional) Include outputs below this amount.
@@ -868,9 +868,9 @@ namespace wallet_rpc
     {
       std::string address;    // Destination public address.
       uint32_t priority;      // (Optional) Priority for sending the sweep transfer, partially determines fee.
-      uint64_t ring_size;     // (Deprecated) Set to 10. Sets ringsize to n (mixin + 1). Loki ring_size is statically set to 10.
+      uint64_t ring_size;     // (Deprecated) Set to 10. Sets ringsize to n (mixin + 1). coinicles ring_size is statically set to 10.
       uint64_t outputs;       // 
-      uint64_t unlock_time;   // Number of blocks before the loki can be spent (0 to not add a lock).
+      uint64_t unlock_time;   // Number of blocks before the coinicles can be spent (0 to not add a lock).
       std::string payment_id; // (Optional) 64-character hex string to identify a transaction.
       bool get_tx_key;        // (Optional) Return the transaction keys after sending.
       std::string key_image;  // Key image of specific output to sweep.
@@ -1049,7 +1049,7 @@ namespace wallet_rpc
   {
     uint64_t amount;                            // Amount of this transfer.
     bool spent;                                 // Indicates if this transfer has been spent.
-    uint64_t global_index;                      // The index into the global list of transactions grouped by amount in the Loki network.
+    uint64_t global_index;                      // The index into the global list of transactions grouped by amount in the coinicles network.
     std::string tx_hash;                        // Several incoming transfers may share the same hash if they were in the same transaction.
     cryptonote::subaddress_index subaddr_index; // Major & minor index, account and subaddress index respectively.
     std::string key_image;                      // Key image for the incoming transfer's unspent output (empty unless verbose is true).
@@ -2150,7 +2150,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Start mining in the loki daemon.
+  // Start mining in the coinicles daemon.
   struct COMMAND_RPC_START_MINING
   {
     struct request_t
@@ -2176,7 +2176,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Stop mining in the loki daemon.
+  // Stop mining in the coinicles daemon.
   struct COMMAND_RPC_STOP_MINING
   {
     struct request_t
@@ -2219,7 +2219,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Create a new wallet. You need to have set the argument "'–wallet-dir" when launching loki-wallet-rpc to make this work.
+  // Create a new wallet. You need to have set the argument "'–wallet-dir" when launching coinicles-wallet-rpc to make this work.
   struct COMMAND_RPC_CREATE_WALLET
   {
     struct request_t
@@ -2245,7 +2245,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Open a wallet. You need to have set the argument "–-wallet-dir" when launching loki-wallet-rpc to make this work.
+  // Open a wallet. You need to have set the argument "–-wallet-dir" when launching coinicles-wallet-rpc to make this work.
   // The wallet rpc executable may only open wallet files within the same directory as wallet-dir, otherwise use the
   // "--wallet-file" flag to open specific wallets.
   struct COMMAND_RPC_OPEN_WALLET

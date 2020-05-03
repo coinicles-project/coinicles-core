@@ -804,7 +804,7 @@ bool t_rpc_command_executor::mining_status() {
     uint64_t daily = 86400ull / mres.block_target * mres.block_reward * ratio;
     uint64_t monthly = 86400ull / mres.block_target * 30.5 * mres.block_reward * ratio;
     uint64_t yearly = 86400ull / mres.block_target * 356 * mres.block_reward * ratio;
-    tools::msg_writer() << "Expected: " << cryptonote::print_money(daily) << " LOKI daily, "
+    tools::msg_writer() << "Expected: " << cryptonote::print_money(daily) << " COINICLES daily, "
         << cryptonote::print_money(monthly) << " monthly, " << cryptonote::print_money(yearly) << " yearly";
   }
 
@@ -1339,7 +1339,7 @@ bool t_rpc_command_executor::print_transaction_pool_long() {
                           << "blob_size: " << tx_info.blob_size << std::endl
                           << "weight: " << tx_info.weight << std::endl
                           << "fee: " << cryptonote::print_money(tx_info.fee) << std::endl
-                          /// NB(Loki): in v13 we have min_fee = per_out*outs + per_byte*bytes, only the total fee/byte matters for
+                          /// NB(coinicles): in v13 we have min_fee = per_out*outs + per_byte*bytes, only the total fee/byte matters for
                           /// the purpose of building a block template from the pool, so we still print the overall fee / byte here.
                           /// (we can't back out the individual per_out and per_byte that got used anyway).
                           << "fee/byte: " << cryptonote::print_money(tx_info.fee / (double)tx_info.weight) << std::endl
@@ -1590,8 +1590,8 @@ bool t_rpc_command_executor::stop_daemon()
 //# ifdef WIN32
 //    // Stop via service API
 //    // TODO - this is only temporary!  Get rid of hard-coded constants!
-//    bool ok = windows::stop_service("Loki Daemon");
-//    ok = windows::uninstall_service("Loki Daemon");
+//    bool ok = windows::stop_service("coinicles Daemon");
+//    ok = windows::uninstall_service("coinicles Daemon");
 //    //bool ok = windows::stop_service(SERVICE_NAME);
 //    //ok = windows::uninstall_service(SERVICE_NAME);
 //    if (ok)
@@ -1635,10 +1635,10 @@ bool t_rpc_command_executor::print_status()
   bool daemon_is_alive = m_rpc_client->check_connection();
 
   if(daemon_is_alive) {
-    tools::success_msg_writer() << "lokid is running";
+    tools::success_msg_writer() << "coiniclesd is running";
   }
   else {
-    tools::fail_msg_writer() << "lokid is NOT running";
+    tools::fail_msg_writer() << "coiniclesd is NOT running";
   }
 
   return true;
@@ -3080,7 +3080,7 @@ bool t_rpc_command_executor::prepare_registration()
       case register_step::is_solo_stake__operator_address_to_reserve:
       {
         std::string address_str;
-        last_input_result = input_line_back_cancel_get_input("Enter the loki address for the solo staker", address_str);
+        last_input_result = input_line_back_cancel_get_input("Enter the coinicles address for the solo staker", address_str);
         if (last_input_result == input_line_result::back)
           continue;
 
@@ -3185,7 +3185,7 @@ bool t_rpc_command_executor::prepare_registration()
       case register_step::is_open_stake__operator_address_to_reserve:
       {
         std::string address_str;
-        last_input_result = input_line_back_cancel_get_input("Enter the loki address for the operator", address_str);
+        last_input_result = input_line_back_cancel_get_input("Enter the coinicles address for the operator", address_str);
         if (last_input_result == input_line_result::back)
           continue;
 
@@ -3209,7 +3209,7 @@ bool t_rpc_command_executor::prepare_registration()
         std::cout << "Minimum amount that can be reserved: " << cryptonote::print_money(min_contribution) << " " << cryptonote::get_unit() << std::endl;
 
         std::string contribution_str;
-        last_input_result = input_line_back_cancel_get_input("How much loki does the operator want to reserve in the stake?", contribution_str);
+        last_input_result = input_line_back_cancel_get_input("How much coinicles does the operator want to reserve in the stake?", contribution_str);
         if (last_input_result == input_line_result::back)
           continue;
 
@@ -3260,7 +3260,7 @@ bool t_rpc_command_executor::prepare_registration()
 
       case register_step::is_open_stake__contributor_address_to_reserve:
       {
-        std::string const prompt = "Enter the loki address for contributor " + std::to_string(state.contributions.size() + 1);
+        std::string const prompt = "Enter the coinicles address for contributor " + std::to_string(state.contributions.size() + 1);
         std::string address_str;
         last_input_result = input_line_back_cancel_get_input(prompt.c_str(), address_str);
         if (last_input_result == input_line_result::back)
@@ -3290,7 +3290,7 @@ bool t_rpc_command_executor::prepare_registration()
         std::cout << "There is " << cryptonote::print_money(amount_left) << " " << cryptonote::get_unit() << " left to meet the staking requirement." << std::endl;
 
         std::string contribution_str;
-        std::string const prompt = "How much loki does contributor " + std::to_string(state.contributions.size() + 1) + " want to reserve in the stake?";
+        std::string const prompt = "How much coinicles does contributor " + std::to_string(state.contributions.size() + 1) + " want to reserve in the stake?";
         last_input_result        = input_line_back_cancel_get_input(prompt.c_str(), contribution_str);
         if (last_input_result == input_line_result::back)
           continue;

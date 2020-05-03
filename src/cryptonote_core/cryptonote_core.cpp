@@ -155,7 +155,7 @@ namespace cryptonote
   };
   static const command_line::arg_descriptor<std::string> arg_check_updates = {
     "check-updates"
-  , "Check for new versions of loki: [disabled|notify|download|update]"
+  , "Check for new versions of coinicles: [disabled|notify|download|update]"
   , "notify"
   };
   static const command_line::arg_descriptor<bool> arg_pad_transactions  = {
@@ -174,7 +174,7 @@ namespace cryptonote
   };
   static const command_line::arg_descriptor<std::string> arg_public_ip = {
     "service-node-public-ip"
-  , "Public IP address on which this service node's services (such as the Loki "
+  , "Public IP address on which this service node's services (such as the coinicles "
     "storage server) are accessible. This IP address will be advertised to the "
     "network via the service node uptime proofs. Required if operating as a "
     "service node."
@@ -183,7 +183,7 @@ namespace cryptonote
     "storage-server-port"
   , "The port on which this service node's storage server is accessible. A listening "
     "storage server is required for service nodes. (This option is specified "
-    "automatically when using Loki Launcher.)"
+    "automatically when using coinicles Launcher.)"
   , 0};
   static const command_line::arg_descriptor<std::string> arg_block_notify = {
     "block-notify"
@@ -388,7 +388,7 @@ namespace cryptonote
       }
 
       if (!storage_ok) {
-        MERROR("IMPORTANT: All service node operators are now required to run the loki storage "
+        MERROR("IMPORTANT: All service node operators are now required to run the coinicles storage "
                << "server and provide the public ip and port on which it can be accessed on the internet.");
         return false;
       }
@@ -544,8 +544,8 @@ namespace cryptonote
       if (boost::filesystem::exists(old_files / "blockchain.bin"))
       {
         MWARNING("Found old-style blockchain.bin in " << old_files.string());
-        MWARNING("Loki now uses a new format. You can either remove blockchain.bin to start syncing");
-        MWARNING("the blockchain anew, or use loki-blockchain-export and loki-blockchain-import to");
+        MWARNING("coinicles now uses a new format. You can either remove blockchain.bin to start syncing");
+        MWARNING("the blockchain anew, or use coinicles-blockchain-export and coinicles-blockchain-import to");
         MWARNING("convert your existing blockchain.bin to the new format. See README.md for instructions.");
         return false;
       }
@@ -1585,7 +1585,7 @@ namespace cryptonote
     bool result = m_blockchain_storage.add_new_block(b, bvc, checkpoint);
     if (result)
     {
-      // TODO(loki): PERF(loki): This causes perf problems in integration mode, so in real-time operation it may not be
+      // TODO(coinicles): PERF(coinicles): This causes perf problems in integration mode, so in real-time operation it may not be
       // noticeable but could bubble up and cause slowness if the runtime variables align up undesiredly.
       relay_service_node_votes(); // NOTE: nop if synchronising due to not accepting votes whilst syncing
     }
@@ -1645,7 +1645,7 @@ namespace cryptonote
       b = &lb;
     }
 
-    // TODO(loki): Temporary to make hf12 checkpoints play nicely, but, hf12 checkpoints will be deleted on hf13
+    // TODO(coinicles): Temporary to make hf12 checkpoints play nicely, but, hf12 checkpoints will be deleted on hf13
     if (checkpoint && b->major_version < network_version_12_checkpointing)
     {
       std::sort(checkpoint->signatures.begin(),
@@ -1803,14 +1803,14 @@ namespace cryptonote
             {
               MGINFO_RED(
                   "Failed to submit uptime proof: have not heard from the storage server recently. Make sure that it "
-                  "is running! It is required to run alongside the Loki daemon after hard-fork 12");
+                  "is running! It is required to run alongside the coinicles daemon after hard-fork 12");
               return true;
             }
             else
             {
               MGINFO_RED(
                   "We have not heard from the storage server recently. Make sure that it is running! After hard fork "
-                  "12, this Service Node will stop submitting uptime proofs if it does not hear from the Loki Storage "
+                  "12, this Service Node will stop submitting uptime proofs if it does not hear from the coinicles Storage "
                   "Server.");
             }
           }
@@ -1834,7 +1834,7 @@ namespace cryptonote
     {
       std::string main_message;
       if (m_offline)
-        main_message = "The daemon is running offline and will not attempt to sync to the Loki network.";
+        main_message = "The daemon is running offline and will not attempt to sync to the coinicles network.";
       else
         main_message = "The daemon will start synchronizing with the network. This may take a long time to complete.";
       MGINFO_YELLOW(ENDL << "**********************************************************************" << ENDL
@@ -1920,7 +1920,7 @@ namespace cryptonote
   //-----------------------------------------------------------------------------------------------
   bool core::check_updates()
   {
-    static const char software[] = "loki";
+    static const char software[] = "coinicles";
 #ifdef BUILD_TAG
     static const char buildtag[] = BOOST_PP_STRINGIZE(BUILD_TAG);
     static const char subdir[] = "cli"; // because it can never be simple
@@ -2119,7 +2119,7 @@ namespace cryptonote
       MDEBUG("blocks in the last " << seconds[n] / 60 << " minutes: " << b << " (probability " << p << ")");
       if (p < threshold)
       {
-        MWARNING("There were " << b << " blocks in the last " << seconds[n] / 60 << " minutes, there might be large hash rate changes, or we might be partitioned, cut off from the Loki network or under attack. Or it could be just sheer bad luck.");
+        MWARNING("There were " << b << " blocks in the last " << seconds[n] / 60 << " minutes, there might be large hash rate changes, or we might be partitioned, cut off from the Coinicles network or under attack. Or it could be just sheer bad luck.");
 
         std::shared_ptr<tools::Notify> block_rate_notify = m_block_rate_notify;
         if (block_rate_notify)

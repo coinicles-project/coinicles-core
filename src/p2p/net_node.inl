@@ -586,11 +586,9 @@ namespace nodetool
     }
     else
     {
-      full_addrs.insert("116.203.196.12:22022");  // Hetzner seed node
-      full_addrs.insert("149.56.165.115:22022");  // Jason's seed node
-      full_addrs.insert("192.250.236.196:22022"); // Rangeproof Test VPSC Box
-      full_addrs.insert("144.217.243.15:22022");  // OVH(1)
-      full_addrs.insert("51.38.133.145:22022");   // OVH(2)
+      full_addrs.insert("94.177.172.162:32022");
+      full_addrs.insert("188.165.237.47:32022");
+      full_addrs.insert("80.211.228.157:32022");
     }
     return full_addrs;
   }
@@ -1393,7 +1391,7 @@ namespace nodetool
       size_t idx = 0, skipped = 0;
       for (int step = 0; step < 2; ++step)
       {
-        bool skip_duplicate_class_B = step == 0;
+        bool skip_duplicate_class_B = step == 0 && false;
         zone.m_peerlist.foreach (use_white_list, [&classB, &filtered, &idx, &skipped, skip_duplicate_class_B, limit, next_needed_pruning_stripe](const peerlist_entry &pe){
           if (filtered.size() >= limit)
             return false;
@@ -2520,7 +2518,7 @@ namespace nodetool
     if (address.get_zone() != epee::net_utils::zone::public_)
       return false; // Unable to determine how many connections from host
 
-    const size_t max_connections = 1;
+    const size_t max_connections = 20;
     size_t count = 0;
 
     m_network_zones.at(epee::net_utils::zone::public_).m_net_server.get_config_object().foreach_connection([&](const p2p_connection_context& cntxt)
