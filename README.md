@@ -4,6 +4,7 @@
     <a href="https://github.com/coiniclesdev/coinicles/commits/dev"><img alt="pipeline status" src="https://gitlab.com/coiniclesproject/coinicles/badges/dev/pipeline.svg" /></a>
 </p>
 
+Copyright (c) 2020 The Coinicles Project.   
 Copyright (c) 2018 The Loki Project.   
 Portions Copyright (c) 2014-2019 The Monero Project.   
 Portions Copyright (c) 2012-2013 The Cryptonote developers.
@@ -13,8 +14,8 @@ Portions Copyright (c) 2012-2013 The Cryptonote developers.
 - Web: [coinicles.tech](https://coinicles.tech)
 - Telegram: [t.me/LokiCommunity](https://t.me/LokiCommunity)
 - Mail: [team@coinicles.tech](mailto:team@coinicles.tech)
-- GitHub: [https://github.com/coiniclesdev/coinicles](https://github.com/coiniclesdev/coinicles)
-- Discord: [https://discord.gg/67GXfD6](https://discord.gg/67GXfD6)
+- GitHub: [https://github.com/coiniclesdev/coinicle](https://github.com/coiniclesdev/coinicle)
+- Discord: [https://discord.gg/SNxQAAx](https://discord.gg/SNxQAAx)
 
 ## Vulnerability disclosure
 
@@ -22,13 +23,11 @@ Portions Copyright (c) 2012-2013 The Cryptonote developers.
 
 ## Information
 
-Loki is a private cryptocurrency based on Monero. Loki currently offers an incentivised full node layer, over the coming months we will be looking to support a secondary p2p network (Lokinet) and a messenger that offers private communications based on the Signal protocol (Loki Messenger).
+Cinicles is a private cryptocurrency based on Loki and Monero. Just like Loki which currently offers an incentivised full node layer.
 
-More information on the project can be found on the website and in the whitepaper.
+Coinicles is an open source project, and we encourage contributions from anyone with something to offer. For more information on contributing, please contact @wagx [https://discord.gg/SNxQAAx](https://discord.gg/SNxQAAx)
 
-Loki is an open source project, and we encourage contributions from anyone with something to offer. For more information on contributing, please contact team@coinicles.tech
-
-## Compiling Loki from source
+## Compiling Coinicles from source
 
 ### Dependencies
 
@@ -81,15 +80,15 @@ FreeBSD one liner for required to build dependencies
 
 Clone recursively to pull-in needed submodule(s):
 
-`$ git clone --recursive https://github.com/coiniclesdev/loki`
+`$ git clone --recursive https://github.com/coiniclesdev/coinicle`
 
 If you already have a repo cloned, initialize and update:
 
-`$ cd loki && git submodule init && git submodule update`
+`$ cd coinicle && git submodule init && git submodule update`
 
 ### Build instructions
 
-Loki uses the CMake build system and a top-level [Makefile](Makefile) that
+Coinicle uses the CMake build system and a top-level [Makefile](Makefile) that
 invokes cmake commands as needed.
 
 #### On Linux and macOS
@@ -121,7 +120,7 @@ invokes cmake commands as needed.
 
 * Add `PATH="$PATH:$HOME/loki/build/release/bin"` to `.profile`
 
-* Run Loki with `coiniclesd --detach`
+* Run Coinicles with `coiniclesd --detach`
 
 * **Optional**: build and run the test suite to verify the binaries:
 
@@ -173,9 +172,8 @@ Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (
 * Clone Loki and checkout the most recent release version:
 
     ```bash
-    git clone https://github.com/coiniclesdev/loki.git
-    cd loki
-    git checkout master
+    git clone https://github.com/coiniclesdev/coinicle.git
+    cd coinicle
     ```
 
 * Build:
@@ -188,15 +186,15 @@ Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (
 
 * The resulting executables can be found in `build/release/bin`
 
-* Add `PATH="$PATH:$HOME/loki/build/release/bin"` to `.profile`
+* Add `PATH="$PATH:$HOME/coinicle/build/release/bin"` to `.profile`
 
-* Run Loki with `coiniclesd --detach`
+* Run Coinicle with `coiniclesd --detach`
 
 * You may wish to reduce the size of the swap file after the build has finished, and delete the boost directory from your home directory
 
 #### *Note for Raspbian Jessie users:*
 
-If you are using the older Raspbian Jessie image, compiling Loki is a bit more complicated. The version of Boost available in the Debian Jessie repositories is too old to use with Loki, and thus you must compile a newer version yourself. The following explains the extra steps, and has been tested on a Raspberry Pi 2 with a clean install of minimal Raspbian Jessie.
+If you are using the older Raspbian Jessie image, compiling Coinicle is a bit more complicated. The version of Boost available in the Debian Jessie repositories is too old to use with Coinicle, and thus you must compile a newer version yourself. The following explains the extra steps, and has been tested on a Raspberry Pi 2 with a clean install of minimal Raspbian Jessie.
 
 * As before, `apt-get update && apt-get upgrade` to install all of the latest software, and increase the system swap size
 
@@ -208,7 +206,7 @@ If you are using the older Raspbian Jessie image, compiling Loki is a bit more c
     ```
 
 
-* Then, install the dependencies for Loki except `libunwind` and `libboost-all-dev`
+* Then, install the dependencies for Coinicle except `libunwind` and `libboost-all-dev`
 
 * Install the latest version of boost (this may first require invoking `apt-get remove --purge libboost*` to remove a previous version if you're not using a clean install):
 
@@ -229,7 +227,7 @@ If you are using the older Raspbian Jessie image, compiling Loki is a bit more c
 
 * Wait ~4 hours
 
-* From here, follow the [general Raspberry Pi instructions](#on-the-raspberry-pi) from the "Clone loki and checkout most recent release version" step.
+* From here, follow the [general Raspberry Pi instructions](#on-the-raspberry-pi) from the "Clone Coinicle and checkout most recent release version" step.
 
 #### On Windows:
 
@@ -284,7 +282,7 @@ application.
 * To git clone, run:
 
     ```bash
-    git clone --recursive https://github.com/coiniclesdev/loki.git
+    git clone --recursive https://github.com/coiniclesdev/coinicle.git
     ```
 
 **Building**
@@ -292,13 +290,13 @@ application.
 * Change to the cloned directory, run:
 	
     ```bash
-    cd loki
+    cd coinicle
     ```
 
-* If you would like a specific [version/tag](https://github.com/coiniclesdev/loki/tags), do a git checkout for that version. eg. 'v3.0.6'. If you don't care about the version and just want binaries from master, skip this step:
+* If you would like a specific [version/tag](https://github.com/coiniclesdev/coinicle/tags), do a git checkout for that version. eg. 'v6.0.0'. If you don't care about the version and just want binaries from master, skip this step:
 	
     ```bash
-    git checkout v3.0.6
+    git checkout v6.0.0
     ```
 
 * If you are on a 64-bit system, run:
@@ -313,7 +311,7 @@ application.
     make release-static-win32
     ```
 
-* The resulting executables can be found in `build/<MinGW version>/<loki version>/release/bin`
+* The resulting executables can be found in `build/<MinGW version>/<coinicle version>/release/bin`
 
 * **Optional**: to build Windows binaries suitable for debugging on a 64-bit system, run:
 
@@ -327,13 +325,13 @@ application.
     make debug-static-win32
     ```
 
-* The resulting executables can be found in `build/<MinGW version>/<loki version>/debug/bin`
+* The resulting executables can be found in `build/<MinGW version>/<coinicle version>/debug/bin`
 
 ### On FreeBSD:
 
-The project can be built from scratch by following instructions for Linux above(but use `gmake` instead of `make`). If you are running loki in a jail you need to add the flag: `allow.sysvipc=1` to your jail configuration, otherwise lmdb will throw the error message: `Failed to open lmdb environment: Function not implemented`.
+The project can be built from scratch by following instructions for Linux above(but use `gmake` instead of `make`). If you are running coinicle in a jail you need to add the flag: `allow.sysvipc=1` to your jail configuration, otherwise lmdb will throw the error message: `Failed to open lmdb environment: Function not implemented`.
 
-We expect to add Loki into the ports tree in the near future, which will aid in managing installations using ports or packages.
+We expect to add Coinicle into the ports tree in the near future, which will aid in managing installations using ports or packages.
 
 ### On OpenBSD:
 
@@ -348,7 +346,7 @@ The doxygen and graphviz packages are optional and require the xbase set.
 The Boost package has a bug that will prevent librpc.a from building correctly. In order to fix this, you will have to Build boost yourself from scratch. Follow the directions here (under "Building Boost"):
 https://github.com/bitcoin/bitcoin/blob/master/doc/build-openbsd.md
 
-You will have to add the serialization, date_time, and regex modules to Boost when building as they are needed by Loki.
+You will have to add the serialization, date_time, and regex modules to Boost when building as they are needed by Coinicle.
 
 To build: `env CC=egcc CXX=eg++ CPP=ecpp DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/path/to/the/boost/you/built make release-static-64`
 
@@ -421,7 +419,7 @@ cmake ..
 doas make install
 ```
 
-Build Loki:
+Build Coinicle:
 ```bash
 env DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/usr/local make release-static
 ```
@@ -432,9 +430,9 @@ You will need to add a few packages to your system. `pkg_add cmake gmake zeromq 
 
 The doxygen and graphviz packages are optional and require the xbase set.
 
-Build loki: `env DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/usr/local gmake release-static`
+Build coinicle: `env DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/usr/local gmake release-static`
 
-Note: you may encounter the following error, when compiling the latest version of loki as a normal user:
+Note: you may encounter the following error, when compiling the latest version of coinicle as a normal user:
 
 ```
 LLVM ERROR: out of memory
@@ -460,13 +458,13 @@ Then you can run make as usual.
 
 ```bash
 # Build image (for ARM 32-bit)
-docker build -f utils/build_scripts/android32.Dockerfile -t loki-android .
+docker build -f utils/build_scripts/android32.Dockerfile -t coinicles-android .
 # Build image (for ARM 64-bit)
-docker build -f utils/build_scripts/android64.Dockerfile -t loki-android .
+docker build -f utils/build_scripts/android64.Dockerfile -t coinicles-android .
 # Create container
-docker create -it --name loki-android loki-android bash
+docker create -it --name coinicles-android coinicles-android bash
 # Get binaries
-docker cp loki-android:/src/build/release/bin .
+docker cp coinicles-android:/src/build/release/bin .
 ```
 
 ### Building portable statically linked binaries
@@ -501,11 +499,11 @@ You can also cross-compile static binaries on Linux for Windows and macOS with t
 
 The required packages are the names for each toolchain on apt. Depending on your distro, they may have different names.
 
-Using `depends` might also be easier to compile Loki on Windows than using MSYS. Activate Windows Subsystem for Linux (WSL) with a distro (for example Ubuntu), install the apt build-essentials and follow the `depends` steps as depicted above.
+Using `depends` might also be easier to compile Coinicles on Windows than using MSYS. Activate Windows Subsystem for Linux (WSL) with a distro (for example Ubuntu), install the apt build-essentials and follow the `depends` steps as depicted above.
 
 The produced binaries still link libc dynamically. If the binary is compiled on a current distribution, it might not run on an older distribution with an older installation of libc. Passing `-DBACKCOMPAT=ON` to cmake will make sure that the binary will run on systems having at least libc version 2.17.
 
-## Installing Loki from a package
+## Installing Coinicles from a package
 
 **DISCLAIMER: These packages are not part of this repository or maintained by this project's contributors, and as such, do not go through the same review process to ensure their trustworthiness and security.**
 
@@ -515,16 +513,16 @@ Packages are available for
 
     ```bash
     # Build using all available cores
-    docker build -t loki-daemon-image .
+    docker build -t coinicles-daemon-image .
     
     # or build using a specific number of cores (reduce RAM requirement)
-    docker build --build-arg NPROC=1 -t loki .
+    docker build --build-arg NPROC=1 -t coinicles .
     
     # either run in foreground
-    docker run -it -v /loki/chain:/root/.loki -v /loki/wallet:/wallet -p 22022:22022 loki
+    docker run -it -v /coinicles/chain:/root/.coinicles -v /coinicles/wallet:/wallet -p 32022:32022 coinicles
     
     # or in background
-    docker run -it -d -v /loki/chain:/root/.loki -v /loki/wallet:/wallet -p 22022:22022 loki
+    docker run -it -d -v /coinicles/chain:/root/.coinicles -v /coinicles/wallet:/wallet -p 32022:32022 coinicles
     ```
 
 * The build needs 3 GB space.
@@ -555,7 +553,7 @@ To run in background:
 To run as a systemd service, copy
 [coiniclesd.service](utils/systemd/coiniclesd.service) to `/etc/systemd/system/` and
 [coiniclesd.conf](utils/conf/coiniclesd.conf) to `/etc/`. The [example
-service](utils/systemd/coiniclesd.service) assumes that the user `loki` exists
+service](utils/systemd/coiniclesd.service) assumes that the user `coinicles` exists
 and its home is the data directory specified in the [example
 config](utils/conf/coiniclesd.conf).
 
@@ -574,7 +572,7 @@ See [README.i18n.md](README.i18n.md).
 > used solely for relaying transactions received over local RPC. This provides
 > privacy and better protection against surrounding node (sybil) attacks.
 
-While Loki isn't made to integrate with Tor, it can be used wrapped with torsocks, by
+While COinicles isn't made to integrate with Tor, it can be used wrapped with torsocks, by
 setting the following configuration parameters and environment variables:
 
 * `--p2p-bind-ip 127.0.0.1` on the command line or `p2p-bind-ip=127.0.0.1` in
@@ -609,14 +607,14 @@ to add a rule to allow this connection too, in addition to telling torsocks to
 allow inbound connections. Full example:
 
 ```bash
-sudo iptables -I OUTPUT 2 -p tcp -d 127.0.0.1 -m tcp --dport 22023 -j ACCEPT
+sudo iptables -I OUTPUT 2 -p tcp -d 127.0.0.1 -m tcp --dport 32023 -j ACCEPT
 DNS_PUBLIC=tcp torsocks ./coiniclesd --p2p-bind-ip 127.0.0.1 --no-igd --rpc-bind-ip 127.0.0.1 \
     --data-dir /home/amnesia/Persistent/your/directory/to/the/blockchain
 ```
 
 ## Debugging
 
-This section contains general instructions for debugging failed installs or problems encountered with Loki. First ensure you are running the latest version built from the Github repo.
+This section contains general instructions for debugging failed installs or problems encountered with Coinicles. First ensure you are running the latest version built from the Github repo.
 
 ### Obtaining stack traces and core dumps on Unix systems
 
@@ -652,7 +650,7 @@ gdb /path/to/coiniclesd /path/to/dumpfile`
 
 Print the stack trace with `bt`
 
-#### To run Loki within gdb:
+#### To run Coinicles within gdb:
 
 Type `gdb /path/to/coiniclesd`
 
@@ -666,13 +664,13 @@ There are two tools available:
 
 #### ASAN
 
-Configure Loki with the -D SANITIZE=ON cmake flag, eg:
+Configure Coinicles with the -D SANITIZE=ON cmake flag, eg:
 
 ```bash
 cd build/debug && cmake -D SANITIZE=ON -D CMAKE_BUILD_TYPE=Debug ../..
 ```
 
-You can then run the loki tools normally. Performance will typically halve.
+You can then run the coinicles tools normally. Performance will typically halve.
 
 #### valgrind
 
@@ -685,7 +683,7 @@ Instructions for debugging suspected blockchain corruption as per @HYC
 There is an `mdb_stat` command in the LMDB source that can print statistics about the database but it's not routinely built. This can be built with the following command:
 
 ```bash
-cd ~/loki/external/db_drivers/liblmdb && make
+cd ~/coinicles/external/db_drivers/liblmdb && make
 ```
 
 The output of `mdb_stat -ea <path to blockchain dir>` will indicate inconsistencies in the blocks, block_heights and block_info table.
