@@ -3082,7 +3082,7 @@ Pending or Failed: "failed"|"pending",  "out", Time, Amount*, Transaction Hash, 
   m_cmd_binder.set_handler("register_service_node",
                            boost::bind(&simple_wallet::register_service_node, this, _1),
                            tr(USAGE_REGISTER_SERVICE_NODE),
-                           tr("Send <amount> to this wallet's main account and lock it as an operator stake for a new Service Node. This command is typically generated on the Service Node via the `prepare_registration' lokid command. The optional index= and <priority> parameters work as in the `transfer' command."));
+                           tr("Send <amount> to this wallet's main account and lock it as an operator stake for a new Service Node. This command is typically generated on the Service Node via the `prepare_registration' coiniclesd command. The optional index= and <priority> parameters work as in the `transfer' command."));
   m_cmd_binder.set_handler("stake",
                            boost::bind(&simple_wallet::stake, this, _1),
                            tr(USAGE_STAKE),
@@ -4221,7 +4221,7 @@ boost::optional<epee::wipeable_string> simple_wallet::new_wallet(const boost::pr
     "To start synchronizing with the daemon, use the \"refresh\" command.\n"
     "Use the \"help\" command to see the list of available commands.\n"
     "Use \"help <command>\" to see a command's documentation.\n"
-    "Always use the \"exit\" command when closing loki-wallet-cli to save \n"
+    "Always use the \"exit\" command when closing coinicles-wallet-cli to save \n"
     "your current session's state. Otherwise, you might need to synchronize \n"
     "your wallet again (your wallet keys are NOT at risk in any case).\n")
   ;
@@ -9687,12 +9687,12 @@ int main(int argc, char* argv[])
   bool should_terminate = false;
   std::tie(vm, should_terminate) = wallet_args::main(
    argc, argv,
-   "loki-wallet-cli [--wallet-file=<filename>|--generate-new-wallet=<filename>] [<COMMAND>]",
+   "coinicles-wallet-cli [--wallet-file=<filename>|--generate-new-wallet=<filename>] [<COMMAND>]",
     sw::tr("This is the command line Loki wallet. It needs to connect to a Loki\ndaemon to work correctly.\n\nWARNING: Do not reuse your Loki keys on a contentious fork, doing so will harm your privacy.\n Only consider reusing your key on a contentious fork if the fork has key reuse mitigations built in."),
     desc_params,
     positional_options,
     [](const std::string &s, bool emphasis){ tools::scoped_message_writer(emphasis ? epee::console_color_white : epee::console_color_default, true) << s; },
-    "loki-wallet-cli.log"
+    "coinicles-wallet-cli.log"
   );
 
   if (!vm)

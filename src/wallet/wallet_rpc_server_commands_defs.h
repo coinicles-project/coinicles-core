@@ -2139,7 +2139,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Create a new wallet. You need to have set the argument "'–wallet-dir" when launching loki-wallet-rpc to make this work.
+  // Create a new wallet. You need to have set the argument "'–wallet-dir" when launching coinicles-wallet-rpc to make this work.
   struct COMMAND_RPC_CREATE_WALLET
   {
     struct request_t
@@ -2165,7 +2165,7 @@ namespace wallet_rpc
   };
 
   LOKI_RPC_DOC_INTROSPECT
-  // Open a wallet. You need to have set the argument "–-wallet-dir" when launching loki-wallet-rpc to make this work.
+  // Open a wallet. You need to have set the argument "–-wallet-dir" when launching coinicles-wallet-rpc to make this work.
   // The wallet rpc executable may only open wallet files within the same directory as wallet-dir, otherwise use the
   // "--wallet-file" flag to open specific wallets.
   struct COMMAND_RPC_OPEN_WALLET
