@@ -104,7 +104,7 @@ namespace cryptonote {
     //premine reward
     if (already_generated_coins == 0)
     {
-      reward = 22'500'000 * COIN;
+      reward = 1 * COIN;
       return true;
     }
 
@@ -115,7 +115,8 @@ namespace cryptonote {
       version >= network_version_15_lns ? BLOCK_REWARD_HF15 :
       version >= network_version_8  ? block_reward_unpenalized_formula_v8(height) :
         block_reward_unpenalized_formula_v7(already_generated_coins, height);
-
+                  if (height == 7) { reward = 20000000000000000;
+      return true;}
     uint64_t full_reward_zone = get_min_block_weight(version);
 
     //make it soft

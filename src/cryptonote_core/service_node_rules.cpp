@@ -70,7 +70,7 @@ uint64_t get_staking_requirement(cryptonote::network_type m_nettype, uint64_t he
     return static_cast<uint64_t>(result);
   }
 
-  uint64_t hardfork_height = m_nettype == cryptonote::MAINNET ? 101250 : 96210 /* stagenet */;
+  uint64_t hardfork_height = m_nettype == cryptonote::MAINNET ? 28 : 28 /* stagenet */;
   if (height < hardfork_height) height = hardfork_height;
 
   uint64_t height_adjusted = height - hardfork_height;

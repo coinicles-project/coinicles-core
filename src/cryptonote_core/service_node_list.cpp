@@ -1673,7 +1673,8 @@ namespace service_nodes
       // expression contraction, and RandomX fiddling with the rounding modes) we can end up with a
       // 1 ULP difference in the reward calculations.
       // TODO(loki): eliminate all FP math from reward calculations
-      if (!within_one(miner_tx.vout[vout_index].amount, reward))
+      //if (!within_one(miner_tx.vout[vout_index].amount, reward))
+      if (miner_tx.vout[vout_index].amount != reward)
       {
         MERROR("Service node reward amount incorrect. Should be " << cryptonote::print_money(reward) << ", is: " << cryptonote::print_money(miner_tx.vout[vout_index].amount));
         return false;
@@ -2712,4 +2713,5 @@ namespace service_nodes
   }
 
 }
+
 
