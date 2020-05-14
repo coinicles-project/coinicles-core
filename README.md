@@ -12,7 +12,6 @@ Portions Copyright (c) 2012-2013 The Cryptonote developers.
 ## Development resources
 
 - Web: [coinicles.tech](https://coinicles.tech)
-- Telegram: [t.me/LokiCommunity](https://t.me/LokiCommunity)
 - Mail: [team@coinicles.tech](mailto:team@coinicles.tech)
 - GitHub: [https://github.com/coiniclesdev/coinicle](https://github.com/coiniclesdev/coinicle)
 - Discord: [https://discord.gg/SNxQAAx](https://discord.gg/SNxQAAx)
