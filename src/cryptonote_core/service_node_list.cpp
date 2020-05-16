@@ -1235,6 +1235,7 @@ namespace service_nodes
           // NOTE: Although insufficient nodes, generate the empty quorum so we can distinguish between a height with
           // insufficient service nodes for a quorum VS a height that shouldn't generate a quorum so that we can report
           // an error to the user if they're missing a quorum
+
         }
         else
         {
