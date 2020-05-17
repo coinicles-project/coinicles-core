@@ -188,25 +188,25 @@ RUN set -ex && \
     rm -rf /var/lib/apt
 COPY --from=builder /src/build/release/bin /usr/local/bin/
 
-# Create loki user
-RUN adduser --system --group --disabled-password loki && \
-	mkdir -p /wallet /home/loki/.loki && \
-	chown -R loki:loki /home/loki/.loki && \
-	chown -R loki:loki /wallet
+# Create coinicles user
+RUN adduser --system --group --disabled-password coinicle && \
+	mkdir -p /wallet /home/coinicles/.coinicles && \
+	chown -R coinicles:coinicles /home/coinicles/.coinicles && \
+	chown -R coinicles:coinicles /wallet
 
 # Contains the blockchain
-VOLUME /home/loki/.loki
+VOLUME /home/coinicles/.coinicles
 
 # Generate your wallet via accessing the container and run:
 # cd /wallet
 # coinicles-wallet-cli
 VOLUME /wallet
 
-EXPOSE 22022
-EXPOSE 22023
+EXPOSE 32022
+EXPOSE 32023
 
 # switch to user monero
-USER loki
+USER coinicles
 
-ENTRYPOINT ["coiniclesd", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=22022", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=22023", "--non-interactive", "--confirm-external-bind"]
+ENTRYPOINT ["coiniclesd", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=32022", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=32023", "--non-interactive", "--confirm-external-bind"]
 
