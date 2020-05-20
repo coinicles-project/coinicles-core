@@ -84,7 +84,7 @@ using namespace epee;
 #include "cryptonote_core/service_node_rules.h"
 #include "common/loki.h"
 #include "common/loki_integration_test_hooks.h"
-
+#include "coinicles_economy.h"
 extern "C"
 {
 #include "crypto/keccak.h"
