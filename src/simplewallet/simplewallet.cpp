@@ -76,6 +76,7 @@
 #include <stdexcept>
 #include "int-util.h"
 #include "wallet/message_store.h"
+#include "QrCode.hpp"
 
 #ifdef WIN32
 #include <boost/locale.hpp>
@@ -255,6 +256,7 @@ namespace
   const char* USAGE_THAW("thaw <key_image>");
   const char* USAGE_FROZEN("frozen <key_image>");
   const char* USAGE_NET_STATS("net_stats");
+  const char* USAGE_SHOW_QR_CODE("show_qr_code [<subaddress_index>]");
   const char* USAGE_WELCOME("welcome");
   const char* USAGE_VERSION("version");
   const char* USAGE_HELP("help [<command>]");
@@ -2194,6 +2196,51 @@ bool simple_wallet::cold_sign_tx(const std::vector<tools::wallet2::pending_tx>& 
   return m_wallet->import_key_images(exported_txs, 0, true);
 }
 
+bool simple_wallet::show_qr_code(const std::vector<std::string> &args)
+{
+  uint32_t subaddress_index = 0;
+  if (args.size() >= 1)
+  {
+    if (!string_tools::get_xtype_from_string(subaddress_index, args[0]))
+    {
+      fail_msg_writer() << tr("invalid index: must be an unsigned integer");
+      return true;
+    }
+    if (subaddress_index >= m_wallet->get_num_subaddresses(m_current_subaddress_account))
+    {
+      fail_msg_writer() << tr("<subaddress_index> is out of bounds");
+      return true;
+    }
+  }
+
+  try
+  {
+    const std::string address = "monero:" + m_wallet->get_subaddress_as_str({m_current_subaddress_account, subaddress_index});
+    const qrcodegen::QrCode qr = qrcodegen::QrCode::encodeText(address.c_str(), qrcodegen::QrCode::Ecc::LOW);
+    for (int y = -2; y < qr.getSize() + 2; y+=2)
+    {
+      for (int x = -2; x < qr.getSize() + 2; x++)
+      {
+        if (qr.getModule(x, y) && qr.getModule(x, y + 1))
+          std::cout << "\u2588";
+        else if (qr.getModule(x, y) && !qr.getModule(x, y + 1))
+          std::cout << "\u2580";
+        else if (!qr.getModule(x, y) && qr.getModule(x, y + 1))
+          std::cout << "\u2584";
+        else
+          std::cout << " ";
+      }
+      std::cout << std::endl;
+    }
+  }
+  catch (const std::length_error&)
+  {
+    fail_msg_writer() << tr("Failed to generate QR code, input too large");
+  }
+
+  return true;
+}
+
 bool simple_wallet::set_always_confirm_transfers(const std::vector<std::string> &args/* = std::vector<std::string>()*/)
 {
   const auto pwd_container = get_and_verify_password();
@@ -3158,6 +3205,10 @@ simple_wallet::simple_wallet()
                            boost::bind(&simple_wallet::version, this, _1),
                            tr(USAGE_VERSION),
                            tr("Returns version information"));
+  m_cmd_binder.set_handler("show_qr_code",
+                           boost::bind(&simple_wallet::on_command, this, &simple_wallet::show_qr_code, _1),
+                           tr(USAGE_SHOW_QR_CODE),
+                           tr("Show address as QR code"));
   m_cmd_binder.set_handler("help",
                            boost::bind(&simple_wallet::help, this, _1),
                            tr(USAGE_HELP),
