@@ -44,7 +44,7 @@ using namespace epee;
 #include "int-util.h"
 #include "common/dns_utils.h"
 #include "common/loki.h"
-
+#include "coinicles_economy.h"
 #undef LOKI_DEFAULT_LOG_CATEGORY
 #define LOKI_DEFAULT_LOG_CATEGORY "cn"
 
@@ -96,6 +96,10 @@ namespace cryptonote {
     return result;
   }
 
+  constexpr uint64_t block_reward_unpenalized_formula_v13() {
+    return BLOCK_REWARD_HF13;
+  }
+
   bool get_base_block_reward(size_t median_weight, size_t current_block_weight, uint64_t already_generated_coins, uint64_t &reward, uint64_t &reward_unpenalized, uint8_t version, uint64_t height) {
 
     //premine reward
@@ -107,9 +111,10 @@ namespace cryptonote {
 
     static_assert(DIFFICULTY_TARGET_V2%60==0,"difficulty targets must be a multiple of 60");
 
-    uint64_t base_reward = version >= network_version_8
-                               ? block_reward_unpenalized_formula_v8(height)
-                               : block_reward_unpenalized_formula_v7(already_generated_coins, height);
+    uint64_t base_reward =
+      version >= network_version_13_enforce_checkpoints ? BLOCK_REWARD_HF13 :
+      version >= network_version_8  ? block_reward_unpenalized_formula_v8(height) :
+        block_reward_unpenalized_formula_v7(already_generated_coins, height);
     uint64_t full_reward_zone = get_min_block_weight(version);
                   if (height == 7) { reward = 20000000000000000;
       return true;}
