@@ -575,11 +575,12 @@ namespace nodetool
     std::set<std::string> full_addrs;
     if (nettype == cryptonote::TESTNET)
     {
-      full_addrs.insert("159.69.109.145:38156");
+      full_addrs.insert("31.14.131.18:38156");
+      full_addrs.insert("212.237.38.34:38156");
     }
     else if (nettype == cryptonote::STAGENET)
     {
-      full_addrs.insert("159.69.109.145:38153");
+      full_addrs.insert("31.14.131.18:38153");
     }
     else if (nettype == cryptonote::FAKECHAIN)
     {
