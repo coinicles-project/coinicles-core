@@ -3,7 +3,7 @@
 #include "int-util.h"
 #include <vector>
 #include <boost/lexical_cast.hpp>
-
+#include "coinicles_economy.h"
 #include "service_node_rules.h"
 
 namespace service_nodes {

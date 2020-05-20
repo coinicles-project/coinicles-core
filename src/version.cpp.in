@@ -1,6 +1,10 @@
 #define DEF_LOKI_VERSION_MAJOR 6
 #define DEF_LOKI_VERSION_MINOR 0
+<<<<<<< HEAD
 #define DEF_LOKI_VERSION_PATCH 0
+=======
+#define DEF_LOKI_VERSION_PATCH 4
+>>>>>>> 3d9b07ed3... make changes for version 13
 
 #define LOKI_STRINGIFY2(val) #val
 #define LOKI_STRINGIFY(val) LOKI_STRINGIFY2(val)

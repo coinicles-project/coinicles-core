@@ -61,11 +61,10 @@ namespace cryptonote
 
   height_to_hash const HARDCODED_MAINNET_CHECKPOINTS[] =
   {
-    {0,      "7dd361d82160d807d34476ea925bc6c73d5bd107a77378fb92f94ecb6f1e81cf"},
-    {10,     "77c50f9660b2fd15f29b8b062b8c81cb3e08802cdd1feab9c11e06ae23602a3c"},
-    {20,     "12cf72eb14892548b2406d9e585f1512aa5ceac86b95afbad884cb678f6e78d7"},
-    {70,     "92198983bfdf455bea4f6eab123500962e1195371cd8ec598020b069af44e2e8"},
-    {100,    "cf03713eda96fb84e23e8ff633f107173bb6170189b8cdb895ead0205da0b782"},
+    {14148,      "78103fa145f6f63854760b262a7e0692f417e9bb98777240dd1d671a8f237499"},
+    {14150,      "8f364c9e650a8049bd88db0a174c9940a0c283a7dd6c22afd1f14d132bea6c4d"},
+    {14151,      "f0bdb4738c441d3a90bc7d39e0918d498766cbae025bc690d5f3ef790186a8dd"},
+    {14152,      "e24a33ca5010ed68d6fef85d155b464c704752359f9be712384ab11d5a1db556"},
   };
 
   height_to_hash const HARDCODED_TESTNET_CHECKPOINTS[] =

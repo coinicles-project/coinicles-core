@@ -1935,23 +1935,23 @@ namespace service_nodes
       if (hf_version >= cryptonote::network_version_13_enforce_checkpoints && proof.snode_version_major < 5)
       {
         LOG_PRINT_L2("Rejecting uptime proof from " << proof.pubkey
-                                                    << ": v5+ loki version is required for v13+ network proofs");
+                                                    << ": v5+ coinicles version is required for v13+ network proofs");
         return false;
       }
       if (hf_version >= cryptonote::network_version_12_checkpointing && proof.snode_version_major < 4)
       {
         LOG_PRINT_L2("Rejecting uptime proof from " << proof.pubkey
-                                                    << ": v4+ loki version is required for v12+ network proofs");
+                                                    << ": v4+ coinicles version is required for v12+ network proofs");
         return false;
       }
       else if (hf_version >= cryptonote::network_version_11_infinite_staking && proof.snode_version_major < 3)
       {
-        LOG_PRINT_L2("Rejecting uptime proof from " << proof.pubkey << ": v3+ loki version is required for v11+ network proofs");
+        LOG_PRINT_L2("Rejecting uptime proof from " << proof.pubkey << ": v3+ coinicles version is required for v11+ network proofs");
         return false;
       }
       else if (hf_version >= cryptonote::network_version_10_bulletproofs && proof.snode_version_major < 2)
       {
-        LOG_PRINT_L2("Rejecting uptime proof from " << proof.pubkey << ": v2+ loki version is required for v10+ network proofs");
+        LOG_PRINT_L2("Rejecting uptime proof from " << proof.pubkey << ": v2+ coinicles version is required for v10+ network proofs");
         return false;
       }
     }
