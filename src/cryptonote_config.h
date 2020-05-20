@@ -212,16 +212,16 @@ namespace config
     uint16_t const RPC_DEFAULT_PORT = 38157;
     uint16_t const ZMQ_RPC_DEFAULT_PORT = 38158;
     boost::uuids::uuid const NETWORK_ID = { {
-        0x5f, 0x3a, 0x78, 0x65, 0xe1, 0x6f, 0xca, 0xb8, 0x02, 0xa1, 0xdc, 0x17, 0x61, 0x64, 0x15, 0xbe,
+        0x54, 0x44, 0x78, 0x67, 0xe1, 0x66, 0xca, 0xb8, 0x02, 0xa1, 0xdc, 0x17, 0x61, 0x64, 0x15, 0xbe,
       } }; // Bender's daydream
-    std::string const GENESIS_TX = "03011e001e01ff00018080c9db97f4fb270259b546996f69aa71abe4238995f41d780ab1abebcac9f00e808f147bdb9e3228420112573af8c309b69a1a646f41b5212ba7d9c4590bf86e04f36c486467cfef9d3d72000000000000000000000000000000000000000000000000000000000000000000";
+    std::string const GENESIS_TX = "011901ff00018094ebdc0302aabd6cf15789a1bab0eb52220ac59bbf90822c59625c7adc92a41d018e4a523d21013a7390951d861e999a19ff2c0227d7cc19c778f22689fc77b3eb5a24c9bbe1ef";
     uint32_t const GENESIS_NONCE = 10001;
 
     uint64_t const GOVERNANCE_REWARD_INTERVAL_IN_BLOCKS = 1000;
     std::string const GOVERNANCE_WALLET_ADDRESS[] =
     {
-      "T6SUprTYE5rQpep9iQFxyPcKVd91DFR1fQ1Qsyqp5eYLiFc8XuYd3reRE71qDL8c3DXioUbDEpDFdaUpetnL37NS1R3rzoKxi", // hardfork v7-9
-      "T6TzkJb5EiASaCkcH7idBEi1HSrpSQJE1Zq3aL65ojBMPZvqHNYPTL56i3dncGVNEYCG5QG5zrBmRiVwcg6b1cRM1SRNqbp44", // hardfork v10
+      "T6ScjgZN4D38WoNW2NChKmGKDrBxEJHv25ryeYFBKKHED2tAhs6zjE9737pqEDk2RAE9YYyZ8zHz2ELkTcTPeNBy27REDFQhL", // hardfork v7-9
+      "T6ScjgZN4D38WoNW2NChKmGKDrBxEJHv25ryeYFBKKHED2tAhs6zjE9737pqEDk2RAE9YYyZ8zHz2ELkTcTPeNBy27REDFQhL", // hardfork v10
     };
 
   }
