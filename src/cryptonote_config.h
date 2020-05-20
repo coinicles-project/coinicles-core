@@ -235,9 +235,9 @@ namespace config
     uint16_t const RPC_DEFAULT_PORT = 38154;
     uint16_t const ZMQ_RPC_DEFAULT_PORT = 38155;
     boost::uuids::uuid const NETWORK_ID = { {
-        0xbb ,0x37, 0x9B, 0x22 , 0x0A, 0x66 , 0x69, 0x1E, 0x09, 0xB2, 0x97, 0x8A, 0xCC, 0xA1, 0xDF, 0x9C
+        0xbb ,0x37, 0x9B, 0x22 , 0x0A, 0x64 , 0x69, 0x1E, 0x09, 0x55, 0x97, 0x8A, 0xCC, 0xA1, 0xDF, 0x44
       } }; // Beep Boop
-    std::string const GENESIS_TX = "021e01ff000380808d93f5d771027e4490431900c66a6532917ad9e6a1de634a209b708f653097e7b48efc1238c68080b4ccd4dfc60302ba19a224e6474371f9161b2e6271a36d060cbdc2e479ad78f1be64c56576fa07808088fccdbcc32302bccf9c13ba1b5bb02638de6e557acdd46bf48953e42cf98a12d2ad2900cc316121018fc6728d9e3c062d3afae3b2317998d2abee1e12f51271ba1c0d3cdd236b81d200";
+    std::string const GENESIS_TX = "011901ff00018094ebdc0302aabd6cf15789a1bab0eb52220ac59bbf90822c59625c7adc92a41d018e4a523d21013a7390951d861e999a19ff2c0227d7cc19c778f22689fc77b3eb5a24c9bbe1ef";
     uint32_t const GENESIS_NONCE = 10002;
 
     uint64_t const GOVERNANCE_REWARD_INTERVAL_IN_BLOCKS = ((60 * 60 * 24 * 7) / DIFFICULTY_TARGET_V2);
