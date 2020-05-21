@@ -135,6 +135,7 @@ namespace cryptonote
 
   uint64_t governance_reward_formula(uint64_t base_reward, uint8_t hf_version)
   {
+    return hf_version >= network_version_14     ? FOUNDATION_REWARD_HF14 :
            hf_version >= network_version_13_enforce_checkpoints ? FOUNDATION_REWARD_HF13 :
            base_reward / 20;
   }

@@ -13,5 +13,11 @@ constexpr uint64_t MINER_REWARD_HF13      = BLOCK_REWARD_HF13 * 24 / 100;
 constexpr uint64_t SN_REWARD_HF13         = BLOCK_REWARD_HF13 * 66 / 100;
 constexpr uint64_t FOUNDATION_REWARD_HF13 = BLOCK_REWARD_HF13 * 10 / 100;
 
+// New (HF14+) money supply parameters (tentative - HF14 not yet scheduled)
+constexpr uint64_t BLOCK_REWARD_HF14      = 21 * COIN;
+constexpr uint64_t SN_REWARD_HF14         = BLOCK_REWARD_HF14 * 90 / 100;
+constexpr uint64_t FOUNDATION_REWARD_HF14 = BLOCK_REWARD_HF14 * 10 / 100;
+
+static_assert(                    SN_REWARD_HF14 + FOUNDATION_REWARD_HF14 == BLOCK_REWARD_HF14, "math fail");
 static_assert(MINER_REWARD_HF13 + SN_REWARD_HF13 + FOUNDATION_REWARD_HF13 == BLOCK_REWARD_HF13, "math fail");
 
