@@ -75,7 +75,7 @@ namespace
     TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(255231055), 64324);
     TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(000000000), 129600);
     TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(390625000), 518400);
-    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(000095367), 1296000);
+    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(000000000), 1296000);
   }
 
   TEST_F(block_reward_and_already_generated_coins, correctly_steps_from_2_to_1)
@@ -87,9 +87,9 @@ namespace
 
   TEST_F(block_reward_and_already_generated_coins, handles_max)
   {
-    TEST_ALREADY_GENERATED_COINS(MONEY_SUPPLY - ((1 << 20) + 1), UINT64_C(0));
-    TEST_ALREADY_GENERATED_COINS(MONEY_SUPPLY -  (1 << 20)     , UINT64_C(0));
-    TEST_ALREADY_GENERATED_COINS(MONEY_SUPPLY - ((1 << 20) - 1), UINT64_C(0));
+    TEST_ALREADY_GENERATED_COINS((uint64_t)(1) - ((1 << 20) + 1), UINT64_C(0));
+    TEST_ALREADY_GENERATED_COINS((uint64_t)(1) -  (1 << 20)     , UINT64_C(0));
+    TEST_ALREADY_GENERATED_COINS((uint64_t)(1) - ((1 << 20) - 1), UINT64_C(0));
   }
 
   TEST_F(block_reward_and_already_generated_coins, reward_parity_between_orig_and_loki_algo)

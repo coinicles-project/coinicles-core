@@ -35,7 +35,7 @@
 #include "cryptonote_basic/cryptonote_basic.h"
 #include "cryptonote_basic/verification_context.h"
 #include "cryptonote_config.h"
-
+#include "coinicles_economy.h"
 TEST(service_nodes, staking_requirement)
 {
   // TODO(loki): The current reference values here for the staking requirement
