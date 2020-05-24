@@ -64,12 +64,14 @@ static uint8_t get_block_version(const cryptonote::block &b)
 // version 7 from the start of the blockchain, inhereted from Monero mainnet
 static constexpr HardFork::Params mainnet_hard_forks[] =
 {
-  { network_version_7,                   1,      0, 1588478195 },
-  { network_version_8,                   6,      0, 1588478197 },
-  { network_version_9_service_nodes,     24,     0, 1588478324 },
-  { network_version_10_bulletproofs,     70,     0, 1588478444 }, // 2018-12-13 23:30UTC
-  { network_version_11_infinite_staking, 100,    0, 1588479344 }, // 2019-03-26 13:00AEDT
-  { network_version_12_checkpointing,    130,    0, 1588479944 }, // 2019-07-24 14:00AEDT
+  { network_version_7,                      1,      0, 1588478195 },
+  { network_version_8,                      6,      0, 1588478197 },
+  { network_version_9_service_nodes,        24,     0, 1588478324 },
+  { network_version_10_bulletproofs,        70,     0, 1588478444 }, // 2018-12-13 23:30UTC
+  { network_version_11_infinite_staking,    100,    0, 1588479344 }, // 2019-03-26 13:00AEDT
+  { network_version_12_checkpointing,       130,    0, 1588479944 }, // 2019-07-24 14:00AEDT
+  { network_version_13_enforce_checkpoints, 19736,  0, 1590710400 }, // 2020-05-29 16:00AEDT
+
 };
 
 static constexpr HardFork::Params testnet_hard_forks[] =
