@@ -64,18 +64,18 @@ namespace
 
   TEST_F(block_reward_and_already_generated_coins, handles_first_values)
   {
-    TEST_ALREADY_GENERATED_COINS(0, UINT64_C(22500000000000000));
+    TEST_ALREADY_GENERATED_COINS(0, UINT64_C(1000000000));
     TEST_ALREADY_GENERATED_COINS(m_block_reward, UINT64_C(122740188075));
-    TEST_ALREADY_GENERATED_COINS(UINT64_C(2756434948434199641), 0);
+    TEST_ALREADY_GENERATED_COINS(UINT64_C(123740188075), 0);
   }
 
   TEST_F(block_reward_and_already_generated_coins, correctly_does_new_emissions_curve)
   {
-    uint64_t supply = UINT64_C(22500000000000000)+116*720*90;
-    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(78255231055), 64324);
-    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(53000000000), 129600);
-    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(28390625000), 518400);
-    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(28000095367), 1296000);
+    uint64_t supply = UINT64_C(1000000000)+116*720*90;
+    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(255231055), 64324);
+    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(000000000), 129600);
+    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(390625000), 518400);
+    TEST_ALREADY_GENERATED_COINS_V2(supply, UINT64_C(000095367), 1296000);
   }
 
   TEST_F(block_reward_and_already_generated_coins, correctly_steps_from_2_to_1)
@@ -94,7 +94,7 @@ namespace
 
   TEST_F(block_reward_and_already_generated_coins, reward_parity_between_orig_and_loki_algo)
   {
-    uint64_t already_generated_coins = UINT64_C(22500000000000000)+116*720*90;
+    uint64_t already_generated_coins = UINT64_C(1000000000)+116*720*90;
     m_block_reward_calc_success      = true;
 
     cryptonote::block_reward_parts        reward_parts_v7   = {};

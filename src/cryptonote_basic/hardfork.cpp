@@ -76,23 +76,24 @@ static constexpr HardFork::Params mainnet_hard_forks[] =
 
 static constexpr HardFork::Params testnet_hard_forks[] =
 {
-  { network_version_7,                      1,      0, 1533631121 },
-  { network_version_8,                      2,      0, 1533631122 },
-  { network_version_9_service_nodes,        3,      0, 1533631123 },
-  { network_version_10_bulletproofs,        4,      0, 1542681077 },
-  { network_version_11_infinite_staking,    5,      0, 1551223964 },
-  { network_version_12_checkpointing,       30,  0, 1561608000 }, // 2019-06-28 14:00AEDT
-  { network_version_13_enforce_checkpoints, 35, 0, 1568440800 }, // 2019-09-13 16:00AEDT
+  { network_version_7,                      1,      0, 1589999337 },
+  { network_version_8,                      2,      0, 1589999341 },
+  { network_version_9_service_nodes,        3,      0, 1589999343 },
+  { network_version_10_bulletproofs,        4,      0, 1589999345 },
+  { network_version_11_infinite_staking,    5,      0, 1589999347 },
+  { network_version_12_checkpointing,       30,     0, 1589999527 },
+  { network_version_13_enforce_checkpoints, 35,     0, 1589999578 },
 };
 
 static constexpr HardFork::Params stagenet_hard_forks[] =
 {
-  { network_version_7,                   1,  0, 1341378000 },
-  { network_version_8,                   6,  0, 1533006000 },
-  { network_version_9_service_nodes,     9,  0, 1536840000 },
-  { network_version_10_bulletproofs,     15, 0, 1536840120 },
-  { network_version_11_infinite_staking, 50, 0, 1551223964 }, // 2019-02-27 12:30 AEDT
-  { network_version_12_checkpointing,    60, 0, 1561608000 }, // 2019-06-28 14:00 AEDT
+  { network_version_7,                      1,      0, 1589999337 },
+  { network_version_8,                      2,      0, 1589999341 },
+  { network_version_9_service_nodes,        3,      0, 1589999343 },
+  { network_version_10_bulletproofs,        4,      0, 1589999345 },
+  { network_version_11_infinite_staking,    5,      0, 1589999347 },
+  { network_version_12_checkpointing,       30,     0, 1589999527 },
+  { network_version_13_enforce_checkpoints, 35,     0, 1589999578 },
 };
 
 uint64_t HardFork::get_hardcoded_hard_fork_height(network_type nettype, cryptonote::network_version version)
