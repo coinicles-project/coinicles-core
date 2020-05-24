@@ -487,7 +487,7 @@ bool loki_chain_generator::create_loki_blockchain_entry(loki_blockchain_entry &e
     {
       loki_blockchain_entry const &historical_entry = blocks_[i];
       if (historical_entry.block.major_version < cryptonote::network_version_10_bulletproofs) break;
-      miner_tx_context.batched_governance += cryptonote::derive_governance_from_block_reward(cryptonote::FAKECHAIN, historical_entry.block);
+      miner_tx_context.batched_governance += cryptonote::derive_governance_from_block_reward(cryptonote::FAKECHAIN, historical_entry.block, hf_version);
     }
   }
 
@@ -703,7 +703,7 @@ static void manual_calc_batched_governance(const test_generator &generator,
         continue;
 
       if (entry.major_version >= cryptonote::network_version_10_bulletproofs)
-        miner_tx_context.batched_governance += cryptonote::derive_governance_from_block_reward(cryptonote::FAKECHAIN, entry);
+        miner_tx_context.batched_governance += cryptonote::derive_governance_from_block_reward(cryptonote::FAKECHAIN, entry, hard_fork_version);
     }
   }
 }

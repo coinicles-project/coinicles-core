@@ -66,12 +66,6 @@ static_assert(STAKING_PORTIONS % 3 == 0, "Use a multiple of three, so that it di
 
 #define STORAGE_SERVER_PING_LIFETIME                    UPTIME_PROOF_FREQUENCY_IN_SECONDS
 
-// MONEY_SUPPLY - total number coins to be generated
-#define MONEY_SUPPLY                                    ((uint64_t)(-1))
-#define EMISSION_LINEAR_BASE                            ((uint64_t)(1) << 58)
-#define EMISSION_SUPPLY_MULTIPLIER                      19
-#define EMISSION_SUPPLY_DIVISOR                         10
-#define EMISSION_DIVISOR                                2000000
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1    20000 // NOTE(loki): For testing suite, //size of block (bytes) after which reward for block calculated using block size - before first fork
@@ -80,8 +74,6 @@ static_assert(STAKING_PORTIONS % 3 == 0, "Use a multiple of three, so that it di
 #define CRYPTONOTE_SHORT_TERM_BLOCK_WEIGHT_SURGE_FACTOR 50
 #define CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE          600
 #define CRYPTONOTE_DISPLAY_DECIMAL_POINT                9
-// COIN - number of smallest units in one coin
-#define COIN                                            ((uint64_t)1000000000) // 1 LOKI = pow(10, 9)
 
 #define FEE_PER_KB                                      ((uint64_t)2000000000) // 2 LOKI (= 2 * pow(10, 9))
 #define FEE_PER_BYTE                                    ((uint64_t)215)   // Fallback used in wallet if no fee is available from RPC
@@ -212,16 +204,16 @@ namespace config
     uint16_t const RPC_DEFAULT_PORT = 38157;
     uint16_t const ZMQ_RPC_DEFAULT_PORT = 38158;
     boost::uuids::uuid const NETWORK_ID = { {
-        0x5f, 0x3a, 0x78, 0x65, 0xe1, 0x6f, 0xca, 0xb8, 0x02, 0xa1, 0xdc, 0x17, 0x61, 0x64, 0x15, 0xbe,
+        0x54, 0x44, 0x78, 0x67, 0xe1, 0x66, 0xca, 0xb8, 0x02, 0xa1, 0xdc, 0x17, 0x61, 0x64, 0x15, 0xbe,
       } }; // Bender's daydream
-    std::string const GENESIS_TX = "03011e001e01ff00018080c9db97f4fb270259b546996f69aa71abe4238995f41d780ab1abebcac9f00e808f147bdb9e3228420112573af8c309b69a1a646f41b5212ba7d9c4590bf86e04f36c486467cfef9d3d72000000000000000000000000000000000000000000000000000000000000000000";
+    std::string const GENESIS_TX = "011901ff00018094ebdc0302aabd6cf15789a1bab0eb52220ac59bbf90822c59625c7adc92a41d018e4a523d21013a7390951d861e999a19ff2c0227d7cc19c778f22689fc77b3eb5a24c9bbe1ef";
     uint32_t const GENESIS_NONCE = 10001;
 
     uint64_t const GOVERNANCE_REWARD_INTERVAL_IN_BLOCKS = 1000;
     std::string const GOVERNANCE_WALLET_ADDRESS[] =
     {
-      "T6SUprTYE5rQpep9iQFxyPcKVd91DFR1fQ1Qsyqp5eYLiFc8XuYd3reRE71qDL8c3DXioUbDEpDFdaUpetnL37NS1R3rzoKxi", // hardfork v7-9
-      "T6TzkJb5EiASaCkcH7idBEi1HSrpSQJE1Zq3aL65ojBMPZvqHNYPTL56i3dncGVNEYCG5QG5zrBmRiVwcg6b1cRM1SRNqbp44", // hardfork v10
+      "T6ScjgZN4D38WoNW2NChKmGKDrBxEJHv25ryeYFBKKHED2tAhs6zjE9737pqEDk2RAE9YYyZ8zHz2ELkTcTPeNBy27REDFQhL", // hardfork v7-9
+      "T6ScjgZN4D38WoNW2NChKmGKDrBxEJHv25ryeYFBKKHED2tAhs6zjE9737pqEDk2RAE9YYyZ8zHz2ELkTcTPeNBy27REDFQhL", // hardfork v10
     };
 
   }
@@ -235,9 +227,9 @@ namespace config
     uint16_t const RPC_DEFAULT_PORT = 38154;
     uint16_t const ZMQ_RPC_DEFAULT_PORT = 38155;
     boost::uuids::uuid const NETWORK_ID = { {
-        0xbb ,0x37, 0x9B, 0x22 , 0x0A, 0x66 , 0x69, 0x1E, 0x09, 0xB2, 0x97, 0x8A, 0xCC, 0xA1, 0xDF, 0x9C
+        0xbb ,0x37, 0x9B, 0x22 , 0x0A, 0x64 , 0x69, 0x1E, 0x09, 0x55, 0x97, 0x8A, 0xCC, 0xA1, 0xDF, 0x44
       } }; // Beep Boop
-    std::string const GENESIS_TX = "021e01ff000380808d93f5d771027e4490431900c66a6532917ad9e6a1de634a209b708f653097e7b48efc1238c68080b4ccd4dfc60302ba19a224e6474371f9161b2e6271a36d060cbdc2e479ad78f1be64c56576fa07808088fccdbcc32302bccf9c13ba1b5bb02638de6e557acdd46bf48953e42cf98a12d2ad2900cc316121018fc6728d9e3c062d3afae3b2317998d2abee1e12f51271ba1c0d3cdd236b81d200";
+    std::string const GENESIS_TX = "011901ff00018094ebdc0302aabd6cf15789a1bab0eb52220ac59bbf90822c59625c7adc92a41d018e4a523d21013a7390951d861e999a19ff2c0227d7cc19c778f22689fc77b3eb5a24c9bbe1ef";
     uint32_t const GENESIS_NONCE = 10002;
 
     uint64_t const GOVERNANCE_REWARD_INTERVAL_IN_BLOCKS = ((60 * 60 * 24 * 7) / DIFFICULTY_TARGET_V2);
@@ -260,7 +252,7 @@ namespace cryptonote
     network_version_11_infinite_staking, // Infinite Staking, CN-Turtle
     network_version_12_checkpointing, // Checkpointing, Relaxed Deregistration, RandomXL, Loki Storage Server
     network_version_13_enforce_checkpoints,
-
+    network_version_14,
     network_version_count,
   };
 
