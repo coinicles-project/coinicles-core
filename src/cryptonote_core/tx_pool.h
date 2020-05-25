@@ -47,6 +47,7 @@
 #include "crypto/hash.h"
 #include "rpc/core_rpc_server_commands_defs.h"
 #include "rpc/message_data_structs.h"
+#include "coinicles_economy.h"
 
 namespace service_nodes
 {
