@@ -1810,7 +1810,14 @@ bool Blockchain::handle_alternative_block(const block& b, const crypto::hash& id
 
     // Check the block's hash against the difficulty target for its alt chain
     difficulty_type current_diff = get_next_difficulty_for_alternative_chain(alt_chain, block_height);
-    CHECK_AND_ASSERT_MES(current_diff, false, "!!!!!!! DIFFICULTY OVERHEAD !!!!!!!");
+    difficulty_type required_diff = current_diff;
+    // Difficulty hack; see comment in main chain version
+    if (block_height >= 23340 && m_hardfork->get_current_version() < network_version_14)
+    {
+      required_diff = (required_diff * 998) / 1000;
+    }
+
+    CHECK_AND_ASSERT_MES(required_diff, false, "!!!!!!! DIFFICULTY OVERHEAD !!!!!!!");
     crypto::hash proof_of_work = null_hash;
     if (b.major_version >= cryptonote::network_version_12_checkpointing)
     {
@@ -1836,9 +1843,9 @@ bool Blockchain::handle_alternative_block(const block& b, const crypto::hash& id
     {
       get_block_longhash(this, b, proof_of_work, block_height, 0);
     }
-    if(!check_hash(proof_of_work, current_diff))
+    if(!check_hash(proof_of_work, required_diff))
     {
-      MERROR_VER("Block with id: " << id << std::endl << " for alternative chain, does not have enough proof of work: " << proof_of_work << std::endl << " expected difficulty: " << current_diff);
+      MERROR_VER("Block with id: " << id << "\n for alternative chain, does not have enough proof of work: " << proof_of_work << "\n required difficulty: " << required_diff);
       bvc.m_verifivation_failed = true;
       return false;
     }
@@ -3727,7 +3734,23 @@ leave:
   // FIXME: get_difficulty_for_next_block can also assert, look into
   // changing this to throwing exceptions instead so we can clean up.
   difficulty_type current_diffic = get_difficulty_for_next_block();
-  CHECK_AND_ASSERT_MES(current_diffic, false, "!!!!!!!!! difficulty overhead !!!!!!!!!");
+  difficulty_type required_diff = current_diffic;
+
+  // There is a difficulty bug in lokid that caused a network disagreement at height 526483 where
+  // somewhere around half the network had a slightly-too-high difficulty value and accepted the
+  // block while nodes with the correct difficulty value rejected it.  However this not-quite-enough
+  // difficulty chain had enough of the network following it that it got checkpointed several times
+  // and so cannot be rolled back.
+  //
+  // Hence this hack: starting at that block until the next hard fork, we allow a slight grace
+  // (0.2%) on the required difficulty (but we don't *change* the actual difficulty value used for
+  // diff calculation).
+  if (blockchain_height >= 23340 && m_hardfork->get_current_version() < network_version_14)
+  {
+    required_diff = (required_diff * 998) / 1000;
+  }
+
+  CHECK_AND_ASSERT_MES(required_diff, false, "!!!!!!!!! difficulty overhead !!!!!!!!!");
 
   TIME_MEASURE_FINISH(target_calculating_time);
 
@@ -3778,9 +3801,9 @@ leave:
       proof_of_work = get_block_longhash(this, bl, blockchain_height, 0);
 
     // validate proof_of_work versus difficulty target
-    if(!check_hash(proof_of_work, current_diffic))
+    if(!check_hash(proof_of_work, required_diff))
     {
-      MERROR_VER("Block with id: " << id << std::endl << "does not have enough proof of work: " << proof_of_work << " at height " << blockchain_height << ", unexpected difficulty: " << current_diffic);
+      MERROR_VER("Block with id: " << id << "\n does not have enough proof of work: " << proof_of_work << " at height " << blockchain_height << ", required difficulty: " << required_diff);
       bvc.m_verifivation_failed = true;
       goto leave;
     }

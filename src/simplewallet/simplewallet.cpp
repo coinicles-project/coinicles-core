@@ -5653,9 +5653,9 @@ static bool locked_blocks_arg_valid(const std::string& arg, uint64_t& duration)
     return false;
   }
 
-  if (duration > 1000000)
+  if (duration > 100000000000000000)
   {
-    fail_msg_writer() << tr("Locked blocks too high, max 1000000 (˜4 yrs)");
+    fail_msg_writer() << tr("Locked blocks too high, max 10000000000000000000 (˜400000 million yrs)");
     return false;
   }
 
