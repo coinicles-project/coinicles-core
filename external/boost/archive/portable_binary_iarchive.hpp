@@ -226,7 +226,7 @@ public:
 #include <istream>
 #include <string>
 
-#include <boost/detail/endian.hpp>
+#include <boost/endian/conversion.hpp>
 #include <boost/serialization/throw_exception.hpp>
 #include <boost/archive/archive_exception.hpp>
 
@@ -263,7 +263,7 @@ portable_binary_iarchive::load_impl(boost::intmax_t & l, char maxsize){
         if(m_flags & endian_big)
     #endif
     reverse_bytes(size, cptr);
-    
+
     if(negative)
         l = -l;
 }
@@ -331,7 +331,7 @@ portable_binary_iarchive::init(unsigned int flags){
                 )
             );
         */
-        
+
         #if BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3205))
         this->set_library_version(input_library_version);
         //#else
