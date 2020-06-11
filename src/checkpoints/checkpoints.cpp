@@ -66,11 +66,13 @@ namespace cryptonote
     {20,     "12cf72eb14892548b2406d9e585f1512aa5ceac86b95afbad884cb678f6e78d7"},
     {70,     "92198983bfdf455bea4f6eab123500962e1195371cd8ec598020b069af44e2e8"},
     {100,    "cf03713eda96fb84e23e8ff633f107173bb6170189b8cdb895ead0205da0b782"},
+    {23340,  "a047cc0a6c25aec8c272b58b3f412c4748015f1d2768ac3b96f0a3707f35aa7f"},
+    {28391,  "c74e8e21b0f2de428a14b3c873c083706ca02d92268e8237b5ab0bab90faa76d"},
   };
 
   height_to_hash const HARDCODED_TESTNET_CHECKPOINTS[] =
   {
-    {127028, "83f6ea8d62601733a257d2f075fd960edd80886dc090d8751478c0a738caa09e"},
+    {0, "189829ed0789780a34dc2addb9c7b169945e98960bd0bf952414c2d3f8e02061"},
   };
 
   crypto::hash get_newest_hardcoded_checkpoint(cryptonote::network_type nettype, uint64_t *height)
