@@ -71,7 +71,7 @@ static constexpr HardFork::Params mainnet_hard_forks[] =
   { network_version_11_infinite_staking,    100,    0, 1588479344 }, // 2019-03-26 13:00AEDT
   { network_version_12_checkpointing,       130,    0, 1588479944 }, // 2019-07-24 14:00AEDT
   { network_version_13_enforce_checkpoints, 19736,  0, 1590710400 }, // 2020-05-29 16:00AEDT
-
+  { network_version_14,  28392, 0, 1591956222 },
 };
 
 static constexpr HardFork::Params testnet_hard_forks[] =
